@@ -1,0 +1,114 @@
+TEMPLATE = app
+
+CONFIG	+=designer ui
+QT += opengl
+
+
+INCLUDEPATH += . src
+
+macx {
+	INCLUDEPATH += \
+		/usr/include \
+		/usr/local/include
+}
+
+unix {
+	INCLUDEPATH += \
+		/usr/include \
+		/usr/local/include
+}
+
+FORMS = ui/mainwindow.ui
+
+HEADERS += \
+	scenes/moviePlayer/src/movieplayer.h
+SOURCES += \
+	scenes/moviePlayer/src/movieplayer.cpp
+
+
+HEADERS += src/qbz.h \
+	src/qbz_baseapp.h \
+	src/qbz_ofwidget.h \
+	src/qbz_fbo.h \
+	src/qbz_shader.h \
+	src/qbz_model.h \
+	src/qbz_mesh.h \	
+	src/qbz_videoplayer.h \
+	src/qbz_camera.h \
+	src/qbz_playlist.h \
+	src/qbz_plane.h \
+	src/qbz_projection_simple.h \
+	src/qbz_projectionmapper.h \
+	src/qbz_projectionarea.h \
+	src/qbz_tube.h \
+	src/cookies.h \
+	src/mainwindow.h
+		   
+SOURCES += src/main.cpp \
+	src/qbz_ofwidget.cpp \
+	src/qbz_fbo.cpp \
+	src/qbz_shader.cpp \
+	src/qbz_model.cpp \
+	src/qbz_mesh.cpp \
+	src/qbz_videoplayer.cpp \
+	src/qbz_camera.cpp \
+	src/qbz_playlist.cpp \
+	src/qbz_plane.cpp \
+	src/qbz_projection_simple.cpp \
+	src/qbz_projectionarea.cpp \
+	src/qbz_projectionmapper.cpp \
+	src/qbz_tube.cpp \
+	src/cookies.cpp \
+	src/mainwindow.cpp
+
+INCLUDEPATH +=  frameworks \
+	frameworks/assimp/include \
+	frameworks/openFrameworks/libs \
+	frameworks/openFrameworks/libs/openFrameworks \
+	frameworks/openFrameworks/libs/openFrameworks/app \
+	frameworks/openFrameworks/libs/openFrameworks/communication \
+	frameworks/openFrameworks/libs/openFrameworks/events \
+	frameworks/openFrameworks/libs/openFrameworks/graphics \
+	frameworks/openFrameworks/libs/openFrameworks/sound \
+	frameworks/openFrameworks/libs/openFrameworks/utils \
+	frameworks/openFrameworks/libs/openFrameworks/video \
+	frameworks/openFrameworks/libs/poco/include \
+	frameworks/openFrameworks/libs/fmodex/include \
+	frameworks/openFrameworks/libs/FreeImage/include \
+	frameworks/openFrameworks/libs/freetype/include \
+	frameworks/openFrameworks/libs/glee/include \
+	frameworks/openFrameworks/libs/rtAudio/include \
+	
+
+macx {
+	LIBS += \
+		-framework QuickTime \
+		-framework Appkit \
+		-framework Cocoa \
+		-framework IOKit \
+		-framework ApplicationServices \
+		-framework AudioToolbox \
+		-framework Carbon \
+		-framework CoreAudio \
+		-framework CoreFoundation \
+		-framework CoreServices \
+		-Lframeworks/assimp/lib -lassimp \
+		-Lframeworks/openFrameworks/libs/glut/lib/osx -framework GLUT \
+		-Lframeworks/openFrameworks/libs/fmodex/lib/osx -lfmodex \
+		frameworks/openFrameworks/libs/openFrameworksCompiled/lib/osx/openFrameworksDebug.a \
+		frameworks/openFrameworks/libs/poco/lib/osx/CppUnit.a \
+		frameworks/openFrameworks/libs/poco/lib/osx/PocoFoundation.a \
+		frameworks/openFrameworks/libs/poco/lib/osx/PocoNet.a \
+		frameworks/openFrameworks/libs/poco/lib/osx/PocoXML.a \
+		frameworks/openFrameworks/libs/poco/lib/osx/PocoUtil.a \
+		frameworks/openFrameworks/libs/poco/lib/osx/PocoUtil.a \
+		frameworks/openFrameworks/libs/FreeImage/lib/osx/freeimage.a \
+		frameworks/openFrameworks/libs/freetype/lib/osx/freetype.a \
+		frameworks/openFrameworks/libs/glee/lib/osx/GLee.a \
+		frameworks/openFrameworks/libs/rtAudio/lib/osx/rtAudio.a \
+
+	LIBS += /usr/lib/libQtUiTools.a
+
+}
+
+

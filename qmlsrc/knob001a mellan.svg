@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 14.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 43363)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1024px"
+	 height="768px" viewBox="0 0 1024 768" enable-background="new 0 0 1024 768" xml:space="preserve">
+<g id="Bas" display="none">
+	<rect id="Blå" x="324" y="156" fill="#0A70C4" width="360" height="360"/>
+	<path id="Blå_hål" display="inline" fill="#0A70C4" d="M684,516H324V156h360V516z M666,174h-54l54,54V174z"/>
+	<g id="Kors" display="inline">
+		<line fill="none" stroke="#FFFFFF" stroke-width="5" x1="504" y1="327" x2="504" y2="345"/>
+		<line fill="none" stroke="#FFFFFF" stroke-width="5" x1="495" y1="336" x2="513" y2="336"/>
+	</g>
+	<rect id="Kontur" x="333" y="165" display="inline" fill="none" stroke="#FFFFFF" width="342" height="342"/>
+	<polygon id="Pyramid_1_" fill="#FFFFFF" points="666,174 612,174 666,228 	"/>
+</g>
+<g id="Pyramid" display="none">
+	<polygon display="inline" fill="#FFFFFF" points="666,174 612,174 666,228 	"/>
+</g>
+<g id="Innerst_1_" display="none">
+	<g id="Innerst" display="inline">
+		<circle fill="none" stroke="#FFFFFF" cx="504" cy="336" r="72"/>
+		<line opacity="0.5" fill="none" stroke="#FFFFFF" x1="504" y1="390" x2="504" y2="426"/>
+		<circle opacity="0.5" fill="none" stroke="#FFFFFF" cx="504" cy="408" r="9"/>
+		<circle opacity="0.25" fill="none" stroke="#FFFFFF" cx="504" cy="336" r="81"/>
+		<circle opacity="0.25" fill="none" stroke="#FFFFFF" cx="504" cy="336" r="63"/>
+	</g>
+</g>
+<g id="Mellan">
+	<g>
+		<circle opacity="0.25" fill="none" stroke="#FFFFFF" cx="504" cy="336" r="117"/>
+		<circle fill="none" stroke="#FFFFFF" cx="504" cy="336" r="108"/>
+		<circle opacity="0.25" fill="none" stroke="#FFFFFF" cx="504" cy="336" r="99"/>
+		<circle opacity="0.5" fill="none" stroke="#FFFFFF" cx="504" cy="444" r="9"/>
+		<line opacity="0.5" fill="none" stroke="#FFFFFF" x1="504" y1="462" x2="504" y2="426"/>
+	</g>
+</g>
+<g id="Ytterst" display="none">
+	<g display="inline">
+		<circle fill="none" stroke="#FFFFFF" cx="504" cy="336" r="144"/>
+		<circle opacity="0.25" fill="none" stroke="#FFFFFF" cx="504" cy="336" r="135"/>
+		<circle opacity="0.5" fill="none" stroke="#FFFFFF" cx="504" cy="480" r="9"/>
+		<line opacity="0.5" fill="none" stroke="#FFFFFF" x1="504" y1="498" x2="504" y2="462"/>
+		<circle opacity="0.25" fill="none" stroke="#FFFFFF" cx="504" cy="336" r="153"/>
+	</g>
+</g>
+<g id="Extra" display="none">
+	<circle display="inline" opacity="0.1" fill="none" stroke="#000000" cx="504" cy="336" r="126"/>
+	<circle display="inline" opacity="0.1" fill="none" stroke="#000000" cx="504" cy="336" r="90"/>
+	<rect x="504" y="444" display="inline" fill="none" width="144" height="72"/>
+	
+		<text transform="matrix(1 0 0 1 535.291 495.5508)" display="inline" fill="#FFFFFF" font-family="'Arial-BoldMT'" font-size="72" letter-spacing="-7">x7E</text>
+	<rect x="504" y="390" display="inline" fill="none" width="144" height="72"/>
+	
+		<text transform="matrix(1 0 0 1 539.334 441.5508)" display="inline" fill="#FFFFFF" font-family="'Arial-BoldMT'" font-size="72" letter-spacing="-7">x0F</text>
+	<g id="Layer_7" display="inline">
+		<rect x="504" y="336" fill="none" width="144" height="72"/>
+		
+			<text transform="matrix(1 0 0 1 527.3809 387.5508)" fill="#FFFFFF" font-family="'Arial-BoldMT'" font-size="72" letter-spacing="-7">xDF</text>
+	</g>
+</g>
+</svg>

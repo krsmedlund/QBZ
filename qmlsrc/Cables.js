@@ -1,0 +1,1 @@
+var globalCables = new Array();
