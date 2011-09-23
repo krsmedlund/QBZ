@@ -62,7 +62,7 @@ HEADERS += src/qbz.h \
     src/qbz_composer.h \
     src/qbz_baseapp.h
 		   
-SOURCES += src/main.cpp \
+SOURCES += src/System/main.cpp \
     src/Ext/RtMidi.cpp \
     src/Ext/CppTweener.cpp \
     src/GL/rendertarget.cpp \
