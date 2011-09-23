@@ -1,2 +1,0 @@
-/Users/krs/Code/qbz2/frameworks/assimp/code/CMakeFiles/assimp.dir
-/Users/krs/Code/qbz2/frameworks/assimp/tools/assimp_cmd/CMakeFiles/assimp_cmd.dir
