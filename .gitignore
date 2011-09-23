@@ -1,7 +1,12 @@
+*.o
+moc_*
 frameworks
-*.o
-*.o
 frameworks/
 frameworks/*
-
-moc_*
+QBZ.app
+QBZ.pro.2
+Makefile
+*build*
+*.mov
+*.mpg
+*.flv
