@@ -1,2 +1,7 @@
+frameworks
 *.o
+*.o
+frameworks/
+frameworks/*
+
 moc_*
