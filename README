@@ -1,1 +1,7 @@
-Foo
+Dependencies:
+Open Asset importer needs to be compiled and placed in frameworks/
+Canvas for QML needs to be compiled and placed in Canvas/
+
+RtMidi is included
+CppTweener is included
+
