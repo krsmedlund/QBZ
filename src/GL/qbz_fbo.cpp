@@ -1,15 +1,13 @@
 #include "qbz_fbo.h"
 
-#include "qbz_renderprogram.h"
-#include "qbz_projection_simple.h"
-#include "qbz_camera.h"
+#include "GL/qbz_renderprogram.h"
+#include "World/qbz_projection_simple.h"
 
 using namespace qbz;
 
 FBO::FBO(int w, int h, bool depth) {
-    this->cam = NULL;
-	this->w = w;
-	this->h = h;
+    this->w = w;
+    this->h = h;
     this->isDepth = depth;
     if (depth) {
         QGLFramebufferObjectFormat fmt;
@@ -26,7 +24,6 @@ FBO::FBO(int w, int h, bool depth) {
 	} else {
 		int h = fbo->size().height();
 		int w = fbo->size().width();
-                //std::cout << "FBO created with size " <<  w << ":" << h << "\n";
 	}
     rect = new Projection_Simple(false);
 }

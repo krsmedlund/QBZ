@@ -1,23 +1,25 @@
-#include "qbz_composer.h"
-#include "qbz_library.h"
-#include "qbz_animator.h"
-#include "qbz_world.h"
-#include "qbz_renderprogram.h"
-#include "qbz_deferredrenderer.h"
-#include "qbz_projection_simple.h"
-#include "qbz_fbo.h"
-#include "qbz_projectionarea.h"
-#include "qbz_harmonics.h"
-#include "rendertarget.h"
-
-#include "qbz_skybox.h"
-#include "qbz_terrain.h"
-
-
-#include "mainwindow.h"
 
 #include <iostream>
 #include <cstdlib>
+
+#include "qbz_composer.h"
+
+#include "System/mainwindow.h"
+#include "System/qbz_library.h"
+
+#include "GL/qbz_renderprogram.h"
+#include "GL/qbz_deferredrenderer.h"
+#include "GL/qbz_fbo.h"
+#include "GL/rendertarget.h"
+
+#include "World/qbz_camera.h"
+#include "World/qbz_animator.h"
+#include "World/qbz_world.h"
+#include "World/qbz_projection_simple.h"
+#include "World/qbz_projectionarea.h"
+#include "World/qbz_harmonics.h"
+#include "GL/qbz_skybox.h"
+#include "GL/qbz_terrain.h"
 
 using namespace qbz;
 
@@ -58,15 +60,15 @@ void Composer::setup()
     sky = new SkyboxCube();
     sky->scale(500.0, 500.0, 500.0);
     sky->material->setTexture(0, store.getTexture("skybox1.png")->handle());
-
+/*
     network::NetworkNode* tmp = network::Factory::createNode("RenderTarget", "testName");
     delete tmp;
 
     rp = new RenderProgram("deferred0");
     rt = new render::RenderTarget("test");
-
-    network::connectPorts(sky->outPortModelData, rp->inPortModelData);
-    network::connectPorts(rp->outPortRenderProgram, rt->inPortRenderProgram);
+*/
+    //network::connectPorts(sky->outPortModelData, rp->inPortModelData);
+    //network::connectPorts(rp->outPortRenderProgram, rt->inPortRenderProgram);
 
     lightRadiusPort = network::registerInPort("Composer", "LightRadius");
     lightRadiusPort->setDefaultValue(&fDef);
@@ -139,7 +141,7 @@ void Composer::draw_embedded() {
 
 void Composer::draw() {
 
-    rt->Do();
+    //rt->Do();
     
     glDisable(GL_BLEND);
 
@@ -156,10 +158,8 @@ void Composer::draw() {
     world->renderPrograms["deferred0_billboard"]->drawObject(sky);
     world->renderPrograms["deferred0"]->drawObject(terrain);
 
-    harm->update(2,2,2,2 + 1*sin(QTime::currentTime().msec()/1000.0f), 2.0f, 3.0 - sin(QTime::currentTime().msec()/10000.0f), 0.0 + 3.0f * cos(QTime::currentTime().msec()/10000.0f), 1.0 + 2.0f * sin(QTime::currentTime().msec()/1000.0f));
+    harm->update(0,0,0,0,3,3,2,3);
     world->renderPrograms["deferred0"]->drawObject(harm);
-
-    world->drawLights();
 
     deferredRenderer->end();
 

@@ -23,7 +23,6 @@ namespace qbz
         bool alive;
     };
 
-
     class ParticleSystem
     {
     public:

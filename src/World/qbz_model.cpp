@@ -7,8 +7,8 @@
  *
  */
 
-#include "qbz_model.h"
-#include "qbz_network.h"
+#include "World/qbz_model.h"
+#include "Network/qbz_network.h"
 
 using namespace qbz;
 

@@ -1,11 +1,10 @@
-#include "qbz_renderprogram.h"
-#include "qbz_shader.h"
-#include "qbz_camera.h"
-#include "qbz_mesh.h"
-#include "qbz_model.h"
 
+#include "GL/qbz_renderprogram.h"
+#include "GL/qbz_shader.h"
+#include "GL/qbz_mesh.h"
 
-
+#include "World/qbz_camera.h"
+#include "World/qbz_model.h"
 
 using namespace qbz;
 

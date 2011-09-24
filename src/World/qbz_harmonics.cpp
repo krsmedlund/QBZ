@@ -2,7 +2,7 @@
 
 using namespace qbz;
 
-#define HARMONICS_SIZE 100
+#define HARMONICS_SIZE 64
 
 void Harmonics::update(int p1, int p2,int p3,int p4, float f1, float f2, float f3, float f4) {
 
@@ -16,16 +16,17 @@ void Harmonics::update(int p1, int p2,int p3,int p4, float f1, float f2, float f
     power[2] = f3;
     power[3] = f4;
 
-    double du = (M_PI * 2.0) / (double)HARMONICS_SIZE; /* Theta */
-    double dv = M_PI / (double)HARMONICS_SIZE;    /* Phi   */
+    double du = (M_PI * 2.0) / (double)HARMONICS_SIZE;  /* Theta */
+    double dv = M_PI / (double)HARMONICS_SIZE;          /* Phi   */
 
     glm::vec3 tmp;
     int i =0;
-
-    for (int x=0;x<HARMONICS_SIZE; ++x) {
-         double u = x * du;
-         for (int y=0;y<HARMONICS_SIZE;++y) {
-            double v = y * dv;
+    double u = 0.0;
+    double v = 0.0;
+    for (int y=0; y<HARMONICS_SIZE; y++) {
+        u = y * du;
+         for (int x=0; x<HARMONICS_SIZE; x++) {
+            v = x * dv;
             tmp = this->eval(u, v);
             vertices[i].position.x = tmp.x;
             vertices[i].position.y = tmp.y;
@@ -33,7 +34,6 @@ void Harmonics::update(int p1, int p2,int p3,int p4, float f1, float f2, float f
 
             vertices[i].texcoord.x = 0.0f;
             vertices[i].texcoord.y = 0.0f;
-
 
             tmp = eval(u + du, v);
             vertices[i+1].position.x = tmp.x;
@@ -99,7 +99,7 @@ void Harmonics::update(int p1, int p2,int p3,int p4, float f1, float f2, float f
 
 Harmonics::Harmonics() : Model(GL_QUADS) {
 
-    mesh->vertex_count = HARMONICS_SIZE * HARMONICS_SIZE * 4;
+    mesh->vertex_count = (HARMONICS_SIZE) * (HARMONICS_SIZE) * 4;
     buffer_size = sizeof(vertex) * this->mesh->vertex_count;
 
     vertices = (vertex*)malloc(buffer_size);
@@ -213,7 +213,7 @@ Harmonics::Harmonics() : Model(GL_QUADS) {
 
 glm::vec3 Harmonics::eval(double theta, double phi) {
 
-    double r = 0;
+    double r = 0.0;
     glm::vec3 p;
 
     r += pow(sin(power[0] * phi), (double)param[0]);
@@ -221,9 +221,9 @@ glm::vec3 Harmonics::eval(double theta, double phi) {
     r += pow(sin(power[2] * theta), (double)param[2]);
     r += pow(cos(power[3] * theta), (double)param[3]);
 
-    p.x = (float) r * sin(phi) * cos(theta);
-    p.y = (float) r * cos(phi);
-    p.z = (float) r * sin(phi) * sin(theta);
+    p.x = r * sin(phi) * cos(theta);
+    p.y = r * cos(phi);
+    p.z = r * sin(phi) * sin(theta);
 
     return p;
 }

@@ -27,7 +27,6 @@ namespace qbz {
     class Camera;
     class Projection_Simple;
     class ProjectionArea;
-    class TextureLoader;
     class FBO;
     class LightDot;
     
@@ -75,12 +74,6 @@ namespace qbz {
 
         static qbz::Model* loadMeshFile(const std::string & name);
         static qbz::Material* loadMaterial(const struct aiMaterial*);
-
-    private:
-        TextureLoader *textureLoader;
-
-
-        
     };
 };
 

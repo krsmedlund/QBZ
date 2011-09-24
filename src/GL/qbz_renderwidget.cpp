@@ -1,5 +1,5 @@
-#include "qbz_renderwidget.h"
-#include "qbz_glthread.h"
+#include "GL/qbz_renderwidget.h"
+#include "System/qbz_glthread.h"
 
 RenderWidget::RenderWidget (QWidget * parent)
     : QGLWidget(parent),

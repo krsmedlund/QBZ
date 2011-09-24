@@ -3,7 +3,7 @@
 #define _QBZ_MIDITHREAD_H
 
 #include "qbz.h"
-#include "RtMidi.h"
+#include "Ext/RtMidi.h"
 
 class MidiPort : public QObject 
 {
@@ -19,7 +19,8 @@ private:
 };
 
 
-class MidiEvent : public QEvent {
+class MidiEvent : public QEvent
+{
 public:
     static const QEvent::Type MidiType = static_cast<QEvent::Type>(2000);
     

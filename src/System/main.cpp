@@ -1,9 +1,9 @@
 #include <openGL.h>
 #include <glext.h>
 
-#include "mainwindow.h"
+#include "System/mainwindow.h"
 #include "qbz_composer.h"
-#include "qbz_network.h"
+#include "Network/qbz_network.h"
 
 MainWindow* mainwindow;
 qbz::network::Network* gNetwork;

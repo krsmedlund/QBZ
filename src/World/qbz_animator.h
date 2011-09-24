@@ -10,7 +10,7 @@
 #ifndef _QBZ_ANIMATOR_H
 #define _QBZ_ANIMATOR_H
 
-#include "CppTweener.h"
+#include "Ext/CppTweener.h"
 #include "qbz.h"
 
 extern QTime* global_time;

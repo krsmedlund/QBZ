@@ -5,15 +5,15 @@
 //  Created by kristoffer smedlund on 05/03/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
+#include "World/qbz_world.h"
 
-#include "qbz_world.h"
-#include "qbz_renderprogram.h"
-#include "qbz_light.h"
-#include "qbz_projection_simple.h"
-#include "qbz_projectionarea.h"
-#include "qbz_tgatexture.h"
-#include "qbz_fbo.h"
-#include "qbz_lightdot.h"
+#include "GL/qbz_renderprogram.h"
+#include "GL/qbz_fbo.h"
+
+#include "World/qbz_camera.h"r
+#include "World/qbz_projection_simple.h"
+#include "World/qbz_projectionarea.h"
+#include "World/qbz_lightdot.h"
 
 #define aisgl_min(x,y) (x<y?x:y)
 #define aisgl_max(x,y) (y>x?y:x)
@@ -21,16 +21,13 @@
 using namespace qbz;
 using namespace std;
 
-World::World() {
-
-    this->textureLoader = new TextureLoader();
-    
+World::World()
+{
     this->projectionAreas.push_back(new ProjectionArea(QBZ_X_RES, QBZ_Y_RES, 0.0f, 1.0f, 1.0f, 0.0f));
     this->projectionAreas[0]->move_to(-1.0, 1.0);
     this->projectionAreas[0]->set_pixels();
-
     this->cameras.push_back(Camera::getGlobalCamera());
-    
+
     this->renderPrograms["deferred0"] = new RenderProgram("deferred0");
     this->renderPrograms["deferred0_billboard"] = new RenderProgram("deferred0_billboard");
     this->renderPrograms["shadowmap0"] = new RenderProgram("shadowmap0");
@@ -134,14 +131,6 @@ void World::update() {
 }
 
 GLuint World::addTexture(const char* name) {
-#if 0
-    std::string n(name);
-    QString load("data/");
-    load.append(name);
-    GLuint tex = this->textureLoader->textureFromFile(load);
-    this->textures[n] = tex;
-    return tex;
-#endif
 }
 
 GLuint World::getTexture(const std::string & name) {

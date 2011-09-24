@@ -10,8 +10,8 @@
 #ifndef _QBZ_BASEAPP_H
 #define _QBZ_BASEAPP_H
 
-#include "qbz_fbo.h"
-#include "qbz_projectionarea.h"
+#include "GL/qbz_fbo.h"
+#include "World/qbz_projectionarea.h"
 
 namespace qbz {
 	class BaseApp 

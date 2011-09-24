@@ -4,7 +4,7 @@
 #include <QGLWidget>
 #include <QGLContext>>
 
-#include "qbz_glthread.h"
+#include "System/qbz_glthread.h"
 #include "qbz.h"
 
 class RenderWidget : public QGLWidget

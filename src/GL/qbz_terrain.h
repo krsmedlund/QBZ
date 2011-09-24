@@ -1,7 +1,7 @@
 #ifndef QBZ_TERRAIN_H
 #define QBZ_TERRAIN_H
 
-#include "qbz_model.h"
+#include "World/qbz_model.h"
 
 namespace qbz {
 

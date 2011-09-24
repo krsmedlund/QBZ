@@ -1,6 +1,4 @@
-#include "mainwindow.h"
-#include "qbz_renderwidget.h"
-
+#include "System/mainwindow.h"
 #include <QDeclarativeView>
 
 using namespace std;

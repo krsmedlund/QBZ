@@ -6,17 +6,23 @@
 //#include <glm/gtx/inverse_transpose.hpp>
 
 
-namespace qbz {
+namespace qbz
+{
     
-    class Camera {
+    class Camera
+    {
     public:
-        Camera( const glm::vec3 &pos, const glm::vec3 &look_at );
-        void rotate( float yaw, float pitch );
-        void move( float value );
+        Camera(const glm::vec3 & pos, const glm::vec3 & lookAt);
+
+        void rotate(float yaw, float pitch);
+        void move(float value);
+
+        void setPosition(const glm::vec3 &pos);
         const glm::vec3& position() const;
+
+        void setLookAt(const glm::vec3 &lookAt);
         const glm::vec3& lookAt() const;
-        void setPosition( const glm::vec3 &pos );
-        void setLookAt( const glm::vec3 &look_at );
+
         void getViewMatrix();
 
         glm::mat4 glViewMatrix;
@@ -32,42 +38,7 @@ namespace qbz {
         
         static Camera* getGlobalCamera();
     };
-    
-    /*
-class Camera {
-public:
-    
-	Camera();
-	Camera(float x, float y, float z);
-    Camera(glm::vec3 eye);
-    
-    void rotate(float angle, float x, float y, float z);
-    
-	void moveTo(float x, float y, float z);
-	void moveTo(glm::vec3 pos);
-	
-    void move(float x, float y, float z);
-    void move(glm::vec3 offset);
-    
-    void lookAt(float x, float y, float z);
-	void look(float x, float y, float z);
 
-    void getViewMatrix();
-
-	glm::mat4 identity;
-	glm::mat4 glViewMatrix;
-	glm::mat4 glProjectionMatrix;
-    glm::mat4 rotationMatrixInverse;
-    glm::mat4 translationMatrixInverse;
-
-    glm::mat4 rotationMatrix;
-    glm::mat4 transformMatrix;
-    
-    glm::vec3 eye;
-    glm::vec3 target;
-    glm::vec3 up;
-};
-  */  
-};
+}
 
 #endif

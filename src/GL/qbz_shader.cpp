@@ -1,5 +1,5 @@
-#include "qbz_shader.h"
-#include "mainwindow.h"
+#include "GL/qbz_shader.h"
+#include "System/mainwindow.h"
 
 using namespace qbz;
 

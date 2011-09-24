@@ -29,30 +29,23 @@ HEADERS += src/qbz.h \
     src/GL/qbz_terrain.h \
     src/GL/qbz_skybox.h \
     src/GL/qbz_shader.h \
-    src/GL/qbz_renderwidget.h \
     src/GL/qbz_renderprogram.h \
     src/GL/qbz_mesh.h \
     src/GL/qbz_fbo.h \
     src/GL/qbz_depthfbo.h \
     src/GL/qbz_deferredrenderer.h \
     src/Network/qbz_network.h \
-    src/System/registry.h \
+    src/Network/registry.h \
     src/System/qbz_tgatexture.h \
     src/System/qbz_ofwidget.h \
     src/System/qbz_midithread.h \
     src/System/qbz_library.h \
-    src/System/qbz_glwidget.h \
-    src/System/qbz_glthread.h \
-    src/System/qbz_clam.h \
-    src/System/qbz_clam_pitchprofile.h \
     src/System/mainwindow.h \
     src/World/qbz_world.h \
     src/World/qbz_projectionmapper.h \
     src/World/qbz_projectionarea.h \
     src/World/qbz_projection_simple.h \
     src/World/qbz_plane.h \
-    src/World/qbz_path.h \
-    src/World/qbz_particlebase.h \
     src/World/qbz_model.h \
     src/World/qbz_lightdot.h \
     src/World/qbz_light.h \
@@ -70,41 +63,31 @@ SOURCES += src/System/main.cpp \
     src/GL/qbz_terrain.cpp \
     src/GL/qbz_skybox.cpp \
     src/GL/qbz_shader.cpp \
-    src/GL/qbz_renderwidget.cpp \
     src/GL/qbz_renderprogram.cpp \
     src/GL/qbz_mesh.cpp \
     src/GL/qbz_fbo.cpp \
     src/GL/qbz_depthfbo.cpp \
     src/GL/qbz_deferredrenderer.cpp \
     src/Network/qbz_network.cpp \
-    src/System/registry.cpp \
+    src/Network/registry.cpp \
     src/System/qbz_tgatexture.cpp \
     src/System/qbz_ofwidget.cpp \
     src/System/qbz_midithread.cpp \
     src/System/qbz_library.cpp \
-    src/System/qbz_glwidget.cpp \
-    src/System/qbz_glthread.cpp \
-    src/System/qbz_clam.cpp \
-    src/System/qbz_clam_pitchprofile.cpp \
     src/System/mainwindow.cpp \
-    src/System/main.cpp \
     src/World/qbz_world.cpp \
-    src/World/qbz_projectionmapper.cpp \
     src/World/qbz_projectionarea.cpp \
     src/World/qbz_projection_simple.cpp \
     src/World/qbz_plane.cpp \
-    src/World/qbz_path.cpp \
-    src/World/qbz_particlebase.cpp \
     src/World/qbz_model.cpp \
     src/World/qbz_lightdot.cpp \
     src/World/qbz_light.cpp \
     src/World/qbz_harmonics.cpp \
     src/World/qbz_camera.cpp \
     src/World/qbz_animator.cpp \
-    src/qbz_composer.cpp
+    src/qbz_composer.cpp \
 
 INCLUDEPATH +=  frameworks \
-        frameworks/cpptweener/src \
         frameworks/assimp/include \
         frameworks/CLAM/include \
 	
@@ -193,6 +176,23 @@ OTHER_FILES += \
     qmlsrc/Button.qml \
     qmlsrc/Cables.js \
     qmlsrc/Model.qml
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

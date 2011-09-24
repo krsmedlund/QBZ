@@ -10,10 +10,8 @@
 #define _QBZ_MODEL_H
 
 #include "qbz.h"
-#include "qbz_shader.h"
-#include "qbz_mesh.h"
-#include "qbz_camera.h"
-#include "qbz_network.h"
+#include "GL/qbz_mesh.h"
+#include "Network/qbz_network.h"
 
 #define MAX_TEXTURE_SLOTS 128
 

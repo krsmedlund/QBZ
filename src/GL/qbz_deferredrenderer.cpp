@@ -6,8 +6,8 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#include "qbz_deferredrenderer.h"
-#include "qbz_world.h"
+#include "GL/qbz_deferredrenderer.h"
+#include "World/qbz_world.h"
 
 using namespace qbz;
 

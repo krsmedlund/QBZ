@@ -7,7 +7,7 @@
 //
 
 #include "qbz.h"
-#include "qbz_network.h"
+#include "Network/qbz_network.h"
 
 namespace qbz 
 {
