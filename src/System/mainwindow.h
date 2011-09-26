@@ -2,7 +2,7 @@
 #define QBZ_MAINWINDOW_H
 
 #include "qbz.h"
-#include "qbz_ofwidget.h"
+#include "System/ofwidget.h"
 
 namespace qbz {
     class Composer;
@@ -31,6 +31,7 @@ private:
 
 protected slots:
     void fromQML(const QString & id, const QString & message);
+    QString getNodeCfg(const QString & name);
     QString addComponent(const QString & type, const QString & identifier);
     QString bindComponents(const QString & type, const QString & id1, const QString & id2);
     void setPortValue(const QString & inPortName, float value=1.0f);

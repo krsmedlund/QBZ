@@ -1,7 +1,7 @@
  <!DOCTYPE RCC>
  <RCC version="1.0">
  <qresource prefix="/">
-     <file>foo.qml</file>
+     <file>qmlsrc/Main.qml</file>
      <file>ui/mainwindow.ui</file>
  </qresource>
  </RCC>

@@ -11,7 +11,7 @@ Item {
     property string portid: "IN.Component.PortName"
     property double min: 0.0
     property double max: 1.0
-    property variant colors: { "float":"red", "texture":"green" }
+    property variant colors: { "float":"red", "texture":"green", "model":"blue", "renderprogram":"purple" }
     property variant dC
 
 
@@ -22,7 +22,7 @@ Item {
                  GradientStop { position: 0.0; color: "#404040" }
              }
         anchors.fill: inport
-        border.color: "#404040"
+        border.color: "#888"
         border.width: 1
         radius: 8
 

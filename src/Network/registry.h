@@ -1,13 +1,15 @@
 #ifndef REGISTRY_H
 #define REGISTRY_H
 
-#include "qbz.h"
-#include "qbz_network.h"
 #include <string>
+
+#include "qbz.h"
+#include "Network/network.h"
 
 #define NETWORK_NODE(_type) \
     public: \
-        virtual const std::string& getType()
+        virtual const std::string& getType(); \
+        static const std::string Cfg
 
 #define NETWORK_REGISTER(_type) \
     const std::string & _type::getType() { return # _type; } \

@@ -5,7 +5,6 @@
 #define QBZ_Y_RES 720
 
 #define QBZ_NATIVE
-//#define	QBZ_OPENFRAMEWORKS
 #define QBZ_ASSIMP
 
 /* stdlib */
@@ -14,9 +13,6 @@
 #include <vector>
 #include <string>
 #include <map>
-
-/* GL */
-//#include <opengl.h>
 
 /* qt */
 #include <QApplication>
@@ -49,10 +45,11 @@
 
 /* libraries */
 #include <glm/glm.hpp>
-//#include <glm/gtc/matrix_projection.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+#ifdef QBZ_CLAM
+#endif
 
 #ifdef QBZ_ASSIMP
     #include <assimp.hpp>
@@ -64,36 +61,46 @@ namespace qbz {
 
     enum ResourceType
     {
-            QBZ_RESOURCE_TEXTURE,
-            QBZ_RESOURCE_RENDERPROGRAM,
-            QBZ_RESOURCE_POSTPROCESSOR,
+        QBZ_RESOURCE_TEXTURE,
+        QBZ_RESOURCE_RENDERPROGRAM,
+        QBZ_RESOURCE_CLPROGRAM,
+        QBZ_RESOURCE_MODEL,
+        QBZ_RESOURCE_FLOAT,
+        QBZ_RESOURCE_INT,
+        QBZ_RESOURCE_STRING,
+        QBZ_RESOURCE_VEC4,
+        QBZ_RESOURCE_VEC3,
+        QBZ_RESOURCE_VEC2,
+        QBZ_RESOURCE_MAT4,
+        QBZ_RESOURCE_MAT3,
+        QBZ_RESOURCE_MAT2
     };
 
     struct vertex
-	{
-		struct world_position {
-			GLfloat x, y, z;
-		} position;
-		
-		struct texture_coordinate {
-			GLfloat x, y, z;
-		} texcoord;
-		
-		struct vertex_normal {
-			GLfloat x,y,z;
-		} normal;
+    {
+        struct world_position {
+            GLfloat x, y, z;
+        } position;
+
+        struct texture_coordinate {
+            GLfloat x, y, z;
+        } texcoord;
+
+        struct vertex_normal {
+            GLfloat x,y,z;
+        } normal;
 
         struct vertex_tangent {
-			GLfloat x,y,z;
-		} tangent;
+            GLfloat x,y,z;
+        } tangent;
 
         struct vertex_bitangent {
-			GLfloat x,y,z;
-		} bitangent;
+            GLfloat x,y,z;
+        } bitangent;
         
-		struct vertex_color {
-			GLfloat r,g,b;
-		} color;
+        struct vertex_color {
+            GLfloat r,g,b;
+        } color;
         
         struct vertex_specular {
             GLfloat r,g,b,a;
@@ -101,6 +108,6 @@ namespace qbz {
         
         float shinyness;
     };
-};
+}
 
 #endif

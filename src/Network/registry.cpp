@@ -1,5 +1,4 @@
-#include "registry.h"
-#include "qbz_network.h"
+#include "Network/registry.h"
 
 using namespace qbz;
 using namespace qbz::network;

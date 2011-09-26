@@ -2,8 +2,8 @@
 #include <glext.h>
 
 #include "System/mainwindow.h"
-#include "qbz_composer.h"
-#include "Network/qbz_network.h"
+#include "composer.h"
+#include "Network/network.h"
 
 MainWindow* mainwindow;
 qbz::network::Network* gNetwork;

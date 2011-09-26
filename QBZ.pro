@@ -25,67 +25,62 @@ HEADERS += src/qbz.h \
     src/Ext/RtError.h \
     src/Ext/CppTweener.h \
     src/GL/rendertarget.h \
-    src/GL/qbz_vbo.h \
-    src/GL/qbz_terrain.h \
-    src/GL/qbz_skybox.h \
-    src/GL/qbz_shader.h \
-    src/GL/qbz_renderprogram.h \
-    src/GL/qbz_mesh.h \
-    src/GL/qbz_fbo.h \
-    src/GL/qbz_depthfbo.h \
-    src/GL/qbz_deferredrenderer.h \
-    src/Network/qbz_network.h \
     src/Network/registry.h \
-    src/System/qbz_tgatexture.h \
-    src/System/qbz_ofwidget.h \
-    src/System/qbz_midithread.h \
-    src/System/qbz_library.h \
     src/System/mainwindow.h \
-    src/World/qbz_world.h \
-    src/World/qbz_projectionmapper.h \
-    src/World/qbz_projectionarea.h \
-    src/World/qbz_projection_simple.h \
-    src/World/qbz_plane.h \
-    src/World/qbz_model.h \
-    src/World/qbz_lightdot.h \
-    src/World/qbz_light.h \
-    src/World/qbz_harmonics.h \
-    src/World/qbz_camera.h \
-    src/World/qbz_animator.h \
-    src/qbz_composer.h \
-    src/qbz_baseapp.h
+    src/Network/network.h \
+    src/GL/deferredrenderer.h \
+    src/GL/depthfbo.h \
+    src/GL/fbo.h \
+    src/GL/mesh.h \
+    src/GL/renderprogram.h \
+    src/GL/skybox.h \
+    src/GL/terrain.h \
+    src/GL/vbo.h \
+    src/System/library.h \
+    src/System/midithread.h \
+    src/System/ofwidget.h \
+    src/System/tgatexture.h \
+    src/World/animator.h \
+    src/World/camera.h \
+    src/World/harmonics.h \
+    src/World/lightdot.h \
+    src/World/model.h \
+    src/World/plane.h \
+    src/World/projection_simple.h \
+    src/World/projectionarea.h \
+    src/World/world.h \
+    src/baseapp.h \
+    src/composer.h
 		   
 SOURCES += src/System/main.cpp \
     src/Ext/RtMidi.cpp \
     src/Ext/CppTweener.cpp \
     src/GL/rendertarget.cpp \
-    src/GL/qbz_vbo.cpp \
-    src/GL/qbz_terrain.cpp \
-    src/GL/qbz_skybox.cpp \
-    src/GL/qbz_shader.cpp \
-    src/GL/qbz_renderprogram.cpp \
-    src/GL/qbz_mesh.cpp \
-    src/GL/qbz_fbo.cpp \
-    src/GL/qbz_depthfbo.cpp \
-    src/GL/qbz_deferredrenderer.cpp \
-    src/Network/qbz_network.cpp \
     src/Network/registry.cpp \
-    src/System/qbz_tgatexture.cpp \
-    src/System/qbz_ofwidget.cpp \
-    src/System/qbz_midithread.cpp \
-    src/System/qbz_library.cpp \
     src/System/mainwindow.cpp \
-    src/World/qbz_world.cpp \
-    src/World/qbz_projectionarea.cpp \
-    src/World/qbz_projection_simple.cpp \
-    src/World/qbz_plane.cpp \
-    src/World/qbz_model.cpp \
-    src/World/qbz_lightdot.cpp \
-    src/World/qbz_light.cpp \
-    src/World/qbz_harmonics.cpp \
-    src/World/qbz_camera.cpp \
-    src/World/qbz_animator.cpp \
-    src/qbz_composer.cpp \
+    src/Network/network.cpp \
+    src/GL/deferredrenderer.cpp \
+    src/GL/depthfbo.cpp \
+    src/GL/fbo.cpp \
+    src/GL/mesh.cpp \
+    src/GL/renderprogram.cpp \
+    src/GL/skybox.cpp \
+    src/GL/vbo.cpp \
+    src/GL/terrain.cpp \
+    src/System/library.cpp \
+    src/System/midithread.cpp \
+    src/System/tgatexture.cpp \
+    src/System/ofwidget.cpp \
+    src/World/animator.cpp \
+    src/World/camera.cpp \
+    src/World/harmonics.cpp \
+    src/World/lightdot.cpp \
+    src/World/model.cpp \
+    src/World/plane.cpp \
+    src/World/projection_simple.cpp \
+    src/World/projectionarea.cpp \
+    src/World/world.cpp \
+    src/composer.cpp
 
 INCLUDEPATH +=  frameworks \
         frameworks/assimp/include \
@@ -113,7 +108,6 @@ OTHER_FILES += \
     qmlsrc/Renderer.qml \
     qmlsrc/OutPort.qml \
     qmlsrc/InPort.qml \
-    qmlsrc/DeferredRenderer.qml \
     qmlsrc/PostProcessor.qml \
     qmlsrc/LFO.qml \
     qmlsrc/Animator.qml \
@@ -175,7 +169,127 @@ OTHER_FILES += \
     qmlsrc/MainMenu.qml \
     qmlsrc/Button.qml \
     qmlsrc/Cables.js \
-    qmlsrc/Model.qml
+    qmlsrc/Model.qml \
+    qmlsrc/Main.qml \
+    qmlsrc/Components.js \
+    qmlsrc/NodeList.qml \
+    qmlsrc/RenderTarget.qml \
+    qmlsrc/ConfigWindow.js \
+    qmlsrc/RenderProgram.qml \
+    qmlsrc/NodeListWindow.qml \
+    qmlsrc/InputListWindow.qml
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

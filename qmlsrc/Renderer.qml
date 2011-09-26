@@ -2,9 +2,10 @@ import QtQuick 1.0
 
 Item {
     id: renderprogram
-    width:250
+    width:150
     height:100
     property string name
+    property string icon
 
     function setColor(c) { background.color = c; }
     function setName(name) { renderprogram.name = name; }
@@ -13,8 +14,8 @@ Item {
 
         anchors.fill: parent
         gradient: Gradient {
-                 GradientStop { position: 1.0; color: "#101010" }
-                 GradientStop { position: 0.0; color: "#202020" }
+                 GradientStop { position: 1.0; color: "#777" }
+                 GradientStop { position: 0.0; color: "#444" }
              }
         border.color: "lightgrey"
         border.width: 1
@@ -29,8 +30,8 @@ Item {
             border.width: 1
 
             gradient: Gradient {
-                     GradientStop { position: 1.0; color: "#306090" }
-                     GradientStop { position: 0.0; color: "#6090C0" }
+                     GradientStop { position: 0.0; color: "#DDF" }
+                     GradientStop { position: 1.0; color: "#AAC" }
                  }
             width: parent.width - 24 - 24
             height: parent.height - 2
@@ -40,11 +41,17 @@ Item {
                 anchors.horizontalCenter: parent.horizontalCenter
                 font.pointSize: 11
                 font.family: "Lucia Grande"
-                color: "white"
+                color: "#444"
                 text: renderprogram.name
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
              }
+
+            Image {
+                y: 5
+                anchors.horizontalCenter: parent.horizontalCenter
+                source: "Icons/" + icon
+            }
         }
     }
 

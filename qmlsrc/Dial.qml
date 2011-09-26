@@ -65,7 +65,6 @@ Item {
             if (v > 0.99) v = 1.0
             if (v < 0.01) v = 0.0
             if (dial.value != v) {
-                console.log("writing..")
                 mainWindow.setPortValue(dial.connectedTo, dial.min + dial.range * v)
             }
             dial.value = v

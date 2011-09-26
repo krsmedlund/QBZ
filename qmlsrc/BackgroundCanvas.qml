@@ -1,7 +1,6 @@
 import QtQuick 1.0
-import "../Canvas"
-
-import "./Cables.js" as CableCode
+import "Canvas"
+import "Cables.js" as CableCode
 Item {
     id: bgc
 

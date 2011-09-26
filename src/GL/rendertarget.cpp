@@ -1,5 +1,5 @@
-#include "rendertarget.h"
-#include "qbz_renderprogram.h"
+#include "GL/rendertarget.h"
+#include "GL/renderprogram.h"
 
 using namespace std;
 using namespace qbz;

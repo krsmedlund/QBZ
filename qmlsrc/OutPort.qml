@@ -14,7 +14,7 @@ Item {
 
     property bool connected: false
 
-    property variant colors: { "float":"red", "texture":"green" }
+    property variant colors: { "float":"red", "texture":"green", "model":"blue", "renderprogram":"purple" }
 
 
     Rectangle {
@@ -24,7 +24,7 @@ Item {
                  GradientStop { position: 0.0; color: "#404040" }
              }
         anchors.fill: outport
-        border.color: "black"
+        border.color: "#888"
         border.width: 1
         radius: 8
 

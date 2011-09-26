@@ -33,10 +33,10 @@ MainWindow::MainWindow() : QWidget(0)
     for (it=nodeList->begin(); it != nodeList->end(); ++it) {
         qs.append(it->c_str());
     }
-    view->rootContext()->setContextProperty("NodeList", QVariant::fromValue(qs));
+    view->rootContext()->setContextProperty("NodeListData", QVariant::fromValue(qs));
     view->rootContext()->setContextProperty("mainWindow", this);
 
-    view->setSource(QUrl::fromLocalFile("foo.qml"));
+    view->setSource(QUrl::fromLocalFile("qmlsrc/Main.qml"));
     view->show();
 
     //QDeclarativeItem *item = view->rootObject()->findChild<QDeclarativeItem*>("testRenderer");
@@ -87,6 +87,11 @@ void MainWindow::setPortValue(const QString & inPortName, float value)
     network::setPortValue(inPortName.toStdString(), value);
 }
 
+QString MainWindow::getNodeCfg(const QString & name)
+{
+    return QString("asdasd");
+}
+
 QString MainWindow::bindComponents(const QString & type, const QString & fromPort, const QString & toPort)
 {
     network::connectPorts(fromPort.toStdString(), toPort.toStdString());
@@ -97,6 +102,7 @@ QString MainWindow::bindComponents(const QString & type, const QString & fromPor
 QString MainWindow::addComponent(const QString & type, const QString & identifier)
 {
     NetworkNode* node = Factory::createNode(type.toStdString(), identifier.toStdString());
+    std::cout << " added " << std::endl;
     return QString("foo");
 }
 

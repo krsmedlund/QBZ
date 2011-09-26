@@ -2,7 +2,7 @@
 #define RENDERTARGET_H
 
 #include "qbz.h"
-#include "Network/qbz_network.h"
+#include "Network/network.h"
 #include "Network/registry.h"
 
 namespace qbz
