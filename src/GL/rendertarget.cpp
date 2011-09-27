@@ -48,7 +48,7 @@ void RenderTarget::Setup(NetworkNodeConfig & cfg)
         glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE_ARB, GL_COMPARE_R_TO_TEXTURE_ARB);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_FUNC_ARB, GL_LEQUAL);
         glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, colorTexture0, 0);
-        outPortColorTexture0 = network::registerOutPort("RenderTarget", "ColorTexture", &colorTexture0);
+        outPorts["ColorTexture"] = network::registerOutPort("RenderTarget", "ColorTexture", &colorTexture0);
     }
 
     if (renderFormat & RenderPosition) {
@@ -62,7 +62,7 @@ void RenderTarget::Setup(NetworkNodeConfig & cfg)
         glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE_ARB, GL_COMPARE_R_TO_TEXTURE_ARB);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_FUNC_ARB, GL_LEQUAL);
         glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT1, GL_TEXTURE_2D, positionTexture, 0);
-        outPortPositionTexture = network::registerOutPort("RenderTarget", "PositionTexture", &positionTexture);
+        outPorts["PositionTexture"] = network::registerOutPort("RenderTarget", "PositionTexture", &positionTexture);
         MTR = true;
     }
 
@@ -77,7 +77,7 @@ void RenderTarget::Setup(NetworkNodeConfig & cfg)
         glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE_ARB, GL_COMPARE_R_TO_TEXTURE_ARB);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_FUNC_ARB, GL_LEQUAL);
         glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT2, GL_TEXTURE_2D, normalTexture, 0);
-        outPortNormalTexture = network::registerOutPort("RenderTarget", "NormalTexture", &normalTexture);
+        outPorts["NormalTexture"] = network::registerOutPort("RenderTarget", "NormalTexture", &normalTexture);
         MTR = true;
     }
 
