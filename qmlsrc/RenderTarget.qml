@@ -10,16 +10,19 @@ Item {
 
     ConfigWindow {
         id: cfgWin
-        onCfgDone: console.log("asd")
+        onCfgDone: {
+            mainWindow.addComponent("RenderTarget", opts)
+            renderTarget.name = opts
+            renderer.visible = true
+        }
     }
 
     function showConfigWindow() {
+        renderer.visible = false
         cfgWin.clear()
         cfgWin.addOpt("foo", "use foo", "bool")
         cfgWin.show()
     }
-
-
 
     MouseArea {
         height: 100
@@ -43,9 +46,10 @@ Item {
         name: renderTarget.name
         width: parent.width
         height: parent.height
+        title: "RenderTarget"
         icon: "default/RenderTarget.png"
-    }
 
+    }
     InPort {
         id: inport0
         width: 16; height: 16
@@ -58,7 +62,6 @@ Item {
 
 
     }
-
     OutPort {
         id: outport0
         width: 16; height: 16
@@ -94,4 +97,5 @@ Item {
         portid: "OUT.RenderTarget.PositionTexture"
 
     }
-}
+
+   }

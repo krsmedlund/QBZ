@@ -3,17 +3,15 @@ import "Components.js" as Network
 
 Rectangle {
 
-    id: page; width:1000; height:1000
+    id: page; width:1500; height:750
     color: "#303030"
 
-    /*
     Image {
         id: bg
         anchors.fill: parent
         smooth: true
-        source: "qmlsrc/background.jpg"
+        source: "bg.png"
     }
-    */
 
     BackgroundCanvas {
         id: drawingBackground
@@ -21,21 +19,15 @@ Rectangle {
     }
 
     MainMenu {
-        width: 1000
-        height: 30
+        width: parent.width
     }
-
-    Dial {
-        id: dial1
-        name: "test dial"
-        x: 169; y: 45
-        value: 0.1
-    }
-
 
     NodeListWindow {
+        height: parent.height
         id: nodeListWindow
         NodeList {
+            y:1
+            x:1
             id: nodeList
         }
     }

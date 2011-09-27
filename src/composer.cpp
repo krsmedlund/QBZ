@@ -60,15 +60,6 @@ void Composer::setup()
     sky = new SkyboxCube();
     sky->scale(500.0, 500.0, 500.0);
     sky->material->setTexture(0, store.getTexture("skybox1.png")->handle());
-/*
-    network::NetworkNode* tmp = network::Factory::createNode("RenderTarget", "testName");
-    delete tmp;
-
-    rp = new RenderProgram("deferred0");
-    rt = new render::RenderTarget("test");
-*/
-    //network::connectPorts(sky->outPortModelData, rp->inPortModelData);
-    //network::connectPorts(rp->outPortRenderProgram, rt->inPortRenderProgram);
 
     lightRadiusPort = network::registerInPort("Composer", "LightRadius");
     lightRadiusPort->setDefaultValue(&fDef);
@@ -78,6 +69,7 @@ void Composer::setup()
 
     lightSpeedPort = network::registerInPort("Composer", "LightSpeed");
     lightSpeedPort->setDefaultValue(&fDef);
+
 
     terrain = new Terrain();
     terrain->material->setTexture(0, store.getTexture("default.png")->handle());
@@ -109,19 +101,12 @@ void Composer::update()
         world->lightbuf[ind].position.z = cos(step * ind + global_time->elapsed()/2500.0) * *(float*)lightRadiusPort->getValuePtr();
     }
 
+
 }
 
 
 std::string Composer::addComponent(ResourceType type, const std::string & identifier)
 {
-    switch(type) {
-        case QBZ_RESOURCE_TEXTURE:
-            qDebug() << "Add texture " << identifier.c_str();
-            break;
-    }
-
-    std::string name = identifier + ";asdasd";
-    return name;
 }
 
 
@@ -142,11 +127,12 @@ void Composer::draw_embedded()
 
 void Composer::draw()
 {
+    glClearColor(0.4, 0.6, 0.9, 1.0);
+    glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
+    glPolygonMode(GL_FRONT, GL_FILL);
+    glDisable(GL_BLEND);
 
     //rt->Do();
-    
-    glDisable(GL_BLEND);
-    glClearColor(0.4, 0.6, 0.9, 1.0);
 
     /* draw deferred objects to textures */
 
@@ -162,49 +148,6 @@ void Composer::draw()
     world->renderPrograms["deferred0"]->drawObject(harm);
 
     deferredRenderer->end();
-
-
-
-    /* compute ssao to FBO
-
-    ssao_fbo->begin();
-    glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
-
-    ssao_fbo->rect->material->setTexture(1, deferredRenderer->colorTexture);
-    world->projectionAreas[0]->material->setTexture(0, deferredRenderer->colorTexture);
-    world->projectionAreas[0]->material->setTexture(1, deferredRenderer->posTexture);
-    world->projectionAreas[0]->material->setTexture(2, deferredRenderer->normTexture);
-    world->renderPrograms["SSAO"]->drawObject(world->projectionAreas[0]);
-    ssao_fbo->end();
-
-    shadowFbo->begin();
-
-    glDisable(GL_CULL_FACE);
-
-
-    glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
-
-    qbz::Camera * cam = new Camera(glm::vec3(0.0f, 100.0f, 0.0f), glm::vec3(0.0f, 0.0f, -5.0f));
-    world->renderPrograms["shadowmap0"]->drawObject(terrain, cam);
-    world->renderPrograms["shadowmap0"]->drawObject(model, cam);
-
-    shadowFbo->end();
-
-
-    //shadowMapFbo->begin();
-    glClearColor(0.0f, 0.0f, 1.0f, 1.0f);
-    world->renderPrograms["shadowmap1"]->glProjectionMatrix = world->renderPrograms["shadowmap0"]->glProjectionMatrix;
-    world->renderPrograms["shadowmap1"]->glModelViewMatrix = world->renderPrograms["shadowmap0"]->glModelViewMatrix;
-    world->renderPrograms["shadowmap1"]->glViewMatrix = world->renderPrograms["shadowmap0"]->glViewMatrix;
-
-    glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
-    world->projectionAreas[0]->material->setTexture(0, shadowFbo->asTexture());
-    world->projectionAreas[0]->material->setTexture(1, deferredRenderer->posTexture);
-    world->renderPrograms["shadowmap1"]->drawObject(world->projectionAreas[0]);
-    //shadowMapFbo->end();
-    */
-
-    // render light map
 
     world->lightFBO->begin();
     glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
@@ -253,6 +196,7 @@ void Composer::draw()
     world->projectionAreas[0]->material->setTexture(0, deferredRenderer->colorTexture);
     world->projectionAreas[0]->material->setTexture(1, world->lightFBO->asTexture());
     world->renderPrograms["projection"]->drawObject(world->projectionAreas[0]);
+
 }
 
 

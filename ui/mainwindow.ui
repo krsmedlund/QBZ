@@ -6,32 +6,21 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1199</width>
-    <height>896</height>
+    <width>1541</width>
+    <height>837</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QWidget" name="verticalLayoutWidget">
+   <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>121</width>
-      <height>841</height>
-     </rect>
-    </property>
-    <layout class="QVBoxLayout" name="control_panel"/>
-   </widget>
-   <widget class="QTabWidget" name="tabWidget">
-    <property name="geometry">
-     <rect>
-      <x>140</x>
-      <y>10</y>
-      <width>1051</width>
-      <height>841</height>
+      <width>1521</width>
+      <height>781</height>
      </rect>
     </property>
     <property name="currentIndex">
@@ -62,8 +51,8 @@
        <rect>
         <x>10</x>
         <y>0</y>
-        <width>1031</width>
-        <height>811</height>
+        <width>1500</width>
+        <height>750</height>
        </rect>
       </property>
       <property name="cursor" stdset="0">
@@ -110,7 +99,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1199</width>
+     <width>1541</width>
      <height>22</height>
     </rect>
    </property>

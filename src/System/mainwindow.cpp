@@ -94,15 +94,31 @@ QString MainWindow::getNodeCfg(const QString & name)
 
 QString MainWindow::bindComponents(const QString & type, const QString & fromPort, const QString & toPort)
 {
+    QString in, out;
+    if (fromPort.startsWith("OUT")) {
+        QStringList portParts = fromPort.split(".");
+        out = portParts[1] + "." + portParts[2];
+    } else out = fromPort;
+
+    if (toPort.startsWith("IN")) {
+        QStringList portParts = toPort.split(".");
+        in = portParts[1] + "." + portParts[2];
+    } else in = toPort;
+
+    qDebug() << "(s): Binding " << out << " to " << in << " of type " << type;
     network::connectPorts(fromPort.toStdString(), toPort.toStdString());
-    qDebug() << "Binding " << fromPort << " to " << toPort << " of type " << type;
+    return QString("boob");
 }
 
 
 QString MainWindow::addComponent(const QString & type, const QString & identifier)
 {
     NetworkNode* node = Factory::createNode(type.toStdString(), identifier.toStdString());
-    std::cout << " added " << std::endl;
+
+    QDeclarativeView *view = qFindChild<QDeclarativeView*>(this, "qmlEmbedHook");
+    QDeclarativeItem *item = view->rootObject()->findChild<QDeclarativeItem*>(identifier);
+    if (item) item->setProperty("name", "Hi from C++");
+    else qDebug() << "cant find " << identifier;
     return QString("foo");
 }
 

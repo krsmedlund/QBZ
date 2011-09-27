@@ -2,7 +2,6 @@ import QtQuick 1.0
 
 
 Item {
-    x:100; y: 100
     id: renderProgram
     width: 150
     height: 100
@@ -14,6 +13,7 @@ Item {
         onCfgDone: {
             mainWindow.addComponent("RenderProgram", opts)
             renderProgram.name = opts
+            renderer.visible = true
         }
     }
 
@@ -21,6 +21,7 @@ Item {
         cfgWin.clear()
         cfgWin.addOpt("foo", "use foo", "bool")
         cfgWin.show()
+        renderer.visible = false
     }
 
     MouseArea {
@@ -46,6 +47,8 @@ Item {
         width: parent.width
         height: parent.height
         icon: "default/RenderProgram.png"
+        visible: false
+        title: "RenderProgram"
     }
 
     InPort {
@@ -69,4 +72,6 @@ Item {
         type: "renderprogram"
         portid: "OUT." + parent.name + ".RenderProgram"
     }
+
+
 }

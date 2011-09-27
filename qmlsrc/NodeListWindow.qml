@@ -1,15 +1,21 @@
 import QtQuick 1.0
 
 Item {
-    y: 30
-    width:  1000
-    height: 120
+    y: 40
+    width: 100
     visible: false
     Rectangle {
         anchors.fill: parent
         gradient: Gradient {
-                 GradientStop { position: 1.0; color: "#252525" }
-                 GradientStop { position: 0.0; color: "#050505" }
+                 GradientStop { position: 1.0; color: "#aaa" }
+                 GradientStop { position: 0.0; color: "#777" }
              }
+        Rectangle {
+            x: 98
+            height: 750
+            width: 1
+            color: "#333"
+        }
     }
+
 }

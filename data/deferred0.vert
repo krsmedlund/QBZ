@@ -20,12 +20,13 @@ void main()
     mv_matrix = v_matrix * m_matrix;
     vec3 pos = position;
 
+    /*
     vec3 delta;
     delta.y = cos( (currentTime / (pos.x / pos.z)) / 2200.0 ) * 0.2;
     delta.x = cos( (currentTime / (pos.y / pos.z)) / 3200.0 ) * 0.2;
     delta.z = cos( (currentTime / (pos.x / pos.y)) / 3200.0 ) * 0.2;
     //pos += delta;
-    
+  */
     gl_Position = p_matrix * mv_matrix * vec4(pos, 1.0);
     frag_texcoord = texcoord;
     

@@ -10,15 +10,16 @@ Item {
         anchors.fill: parent
         gradient:
             Gradient {
-                GradientStop { position: 0.0; color: Qt.rgba(0.5, 0.25, 0.5, 0.4) }
-                GradientStop { position: 1.0; color: Qt.rgba(0.0, 0.0, 0.0, 0.4) }
+                GradientStop { position: 1.0; color: Qt.rgba(0.5, 0.5, 0.5, 0.4) }
+                GradientStop { position: 0.0; color: Qt.rgba(0.9, 0.9, 0.9, 0.4) }
             }
 
         Button {
             y: 5
             x: 5
             id: addComponent
-            text: "add node"
+            toggleButton: true
+            text: "nodes"
             onClicked: {
                 nodeListWindow.visible = !nodeListWindow.visible
             }
@@ -26,9 +27,29 @@ Item {
 
         Button {
             y: 5
-            x: 10
+            x: 105
             id: addInput
-            text: "add input"
+            text: "inputs"
+            onClicked: {
+                inputListWindow.visible = !inputListWindow.visible
+            }
+        }
+
+        Button {
+            y: 5
+            x: 205
+            id: audio
+            text: "audio"
+            onClicked: {
+                inputListWindow.visible = !inputListWindow.visible
+            }
+        }
+
+        Button {
+            y: 5
+            x: 305
+            id: settings
+            text: "gfx"
             onClicked: {
                 inputListWindow.visible = !inputListWindow.visible
             }

@@ -2,10 +2,7 @@ import QtQuick 1.0
 import "ConfigWindow.js" as Cfg
 
 Item {
-
     signal cfgDone (variant opts)
-
-    y: 25;
     id: confWindow
     width:  350
     height: 500
@@ -29,18 +26,22 @@ Item {
     Rectangle {
         anchors.fill: parent
         gradient: Gradient {
-                 GradientStop { position: 1.0; color: "#999" }
-                 GradientStop { position: 0.0; color: "#777" }
+                 GradientStop { position: 0.0; color: "#999" }
+                 GradientStop { position: 1.0; color: "#555" }
              }
 
         Rectangle {
-            x:15; y:15
+            x:25; y:15
             id: nameInput
-            width: 250
-            height: 75
-            color: "#aaa"
+            width: 300
+            height: 55
+            color: "#555"
 
             Text {
+                x:5; y: 3
+                color: "#EEE"
+                style: Text.Raised;
+                styleColor: "#333"
                 text: "Name"
             }
 
@@ -68,6 +69,5 @@ Item {
             }
 
         }
-
     }
 }
