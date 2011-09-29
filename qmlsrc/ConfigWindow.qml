@@ -3,12 +3,14 @@ import "ConfigWindow.js" as Cfg
 
 Item {
     signal cfgDone (variant opts)
+    signal cfgCancel
+
     id: confWindow
     width:  350
     height: 500
-    anchors.horizontalCenter: parent.horizontalCenter
-    anchors.verticalCenter: parent.verticalCenter
     visible: false
+
+    property string nodeName
 
     function clear() {
         Cfg.cfg.clear()
@@ -63,9 +65,22 @@ Item {
             id: addComponent
             text: "Add"
             onClicked: {
-               Cfg.cfg.options["name"] = textInput.text
+               Cfg.cfg.options[0]["name"] = textInput.text
                parent.visible = !parent.visible
-                confWindow.cfgDone(Cfg.cfg.options["name"])
+               confWindow.cfgDone(Cfg.cfg.options)
+            }
+
+        }
+
+        Button {
+            anchors.horizontalCenterOffset: 100
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.verticalCenter: parent.bottom
+            anchors.verticalCenterOffset: -20
+            id: cancel
+            text: "Cancel"
+            onClicked: {
+                cfgCancel()
             }
 
         }

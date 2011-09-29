@@ -8,22 +8,6 @@ Item {
 
     property string name
 
-    ConfigWindow {
-        id: cfgWin
-        onCfgDone: {
-            mainWindow.addComponent("RenderProgram", opts)
-            renderProgram.name = opts
-            renderer.visible = true
-        }
-    }
-
-    function showConfigWindow() {
-        cfgWin.clear()
-        cfgWin.addOpt("foo", "use foo", "bool")
-        cfgWin.show()
-        renderer.visible = false
-    }
-
     MouseArea {
         height: 100
         width: parent.width - 48

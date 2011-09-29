@@ -12,7 +12,7 @@ Item {
         id: cfgWin
         onCfgDone: {
             mainWindow.addComponent("RenderTarget", opts)
-            renderTarget.name = opts
+            renderTarget.name = opts[0]["name"]
             renderer.visible = true
         }
     }

@@ -1,19 +1,18 @@
 
 var cfg =  {
-    options: false,
-    owner: false,
+    "options": [{"name": "default"}],
+    "owner": false,
 
-    show: function() {
-              this.options.forEach(function(elem) {
-                          console.log(elem)
+    "show": function() {
+              cfg.options.forEach(function(elem) {
+                          //console.log(elem)
                       })
           },
-    clear: function() {
-               this.options = new Array();
+    "clear": function() {
+                 cfg.options = [{"name": "default"}]
            },
-    addOpt: function(i, t, q) {
-                if (!this.options)
-                    this.options = new Array()
-                this.options.push({ identifier:i, type:t, question:q })
+
+    "addOpt": function(i, t, q) {
+                cfg.options.push({"name":"kaka", "identifier":i, "type":t, "question":q })
             }
 }

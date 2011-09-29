@@ -46,7 +46,7 @@ Item {
                 font.pointSize: 12
                 font.family: "Lucia Grande"
                 color: "#DDD"
-                text: renderprogram.title
+                text: renderprogram.name
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
              }
@@ -60,7 +60,7 @@ Item {
                 font.pointSize: 11
                 font.family: "Lucia Grande"
                 color: "#DDD"
-                text: renderprogram.name
+                text: renderprogram.title
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
              }

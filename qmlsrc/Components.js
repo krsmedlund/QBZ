@@ -11,10 +11,10 @@ var componentContainer = {
                 if (comp.status == Component.Ready) {
                     this.componentList[name] = comp
                     var inst = comp.createObject(page, {x:"200", y:"250"})
-                    inst.showConfigWindow()
                 } else {
                     console.log("error adding component "    + comp.errorString())
                 }
+                return inst
             },
     onConfigComplete: function() {},
     onConfigCancel: function() {},

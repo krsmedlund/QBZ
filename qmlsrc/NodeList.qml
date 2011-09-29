@@ -1,5 +1,7 @@
 import QtQuick 1.0
 import "Components.js" as Network
+import "ConfigWindow.js" as Cfg
+
 Item {
     id: nodeList
     width: 97
@@ -8,6 +10,28 @@ Item {
         anchors.fill: parent
         onClicked: grid.currentIndex = -1
     }
+
+    function showConfigWindow(nodeName) {
+        cfgWin.nodeName = nodeName
+        cfgWin.clear()
+        cfgWin.addOpt("foo", "use foo", "bool")
+        cfgWin.show()
+        cfgWin.visible = true
+    }
+
+    ConfigWindow {
+        height: parent.height - 40
+        x:100
+        id: cfgWin
+        onCfgDone: {
+            var obj = Network.componentContainer.addNode(cfgWin.nodeName)
+            mainWindow.addComponent(cfgWin.nodeName, opts[0]["name"])
+            obj.name = opts[0]["name"]
+        }
+        onCfgCancel: cfgWin.visible = false
+    }
+
+
     GridView {
         id: grid
         anchors.fill: parent
@@ -60,8 +84,8 @@ Item {
                 hoverEnabled: true
                 anchors.fill: parent
                 onClicked: {
-                    Network.componentContainer.addNode(modelData)
                     grid.currentIndex = index
+                    nodeList.showConfigWindow(modelData)
                 }
             }
 

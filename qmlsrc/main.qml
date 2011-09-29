@@ -2,7 +2,6 @@ import QtQuick 1.0
 import "Components.js" as Network
 
 Rectangle {
-
     id: page; width:1500; height:750
     color: "#303030"
 
@@ -34,5 +33,10 @@ Rectangle {
 
     InputListWindow {
         id: inputListWindow
+    }
+
+    Dial {
+        x: 200
+        y: 200
     }
 }
