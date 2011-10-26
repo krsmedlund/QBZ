@@ -23,13 +23,9 @@ static int foo = qbz::network::Factory::registerCreateFunction("RenderTarget", R
 
 RenderTarget::RenderTarget(const std::string & nodeName)
 {
-    network::registerNode(this, nodeName);
     inPorts["RenderProgram"] = network::registerInPort(nodeName, "RenderProgram", 1, true);
     MTR = false;
-}
 
-void RenderTarget::Setup(NetworkNodeConfig & cfg)
-{
     int renderFormat = RenderColor | RenderPosition | RenderNormal;
     int w = 1280;
     int h = 720;
@@ -90,6 +86,7 @@ void RenderTarget::Setup(NetworkNodeConfig & cfg)
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 
+
 RenderTarget::~RenderTarget()
 {
     glDeleteTextures(1, &colorTexture0);
@@ -116,8 +113,10 @@ void RenderTarget::Do()
         glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
     }
 
-    RenderProgram* rp = reinterpret_cast<RenderProgram*>(inPortRenderProgram->getValuePtr());
-    rp->Do();
+    if (inPorts["RenderProgram"]->connectedTo != 0) {
+        qbz::RenderProgram* rp = reinterpret_cast<qbz::RenderProgram*>(inPorts["RenderProgram"]->getValuePtr());
+        rp->Do();
+    }
 
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }

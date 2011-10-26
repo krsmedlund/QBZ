@@ -5,7 +5,7 @@ using namespace qbz;
 LightDot::LightDot(float scale, glm::vec3 color) : Model(GL_POINTS) {
 	
 	buffer_size = sizeof(vertex) * 1;
-	this->mesh->vertex_count = 1;
+        this->mesh.vertex_count = 1;
 
     for (int i=0; i<1; i++) {
         vertices[i].position.x = 0.0; 
@@ -19,8 +19,8 @@ LightDot::LightDot(float scale, glm::vec3 color) : Model(GL_POINTS) {
         indices[i] = i;
     }
 	
-	this->mesh->set_vertex_buffer(vertices, buffer_size);
-	this->mesh->set_element_buffer(indices, sizeof(indices));
+        this->mesh.set_vertex_buffer(vertices, buffer_size);
+        this->mesh.set_element_buffer(indices, sizeof(indices));
 }
 /*
 LightDot::setPosition(int index, glm::vec3 pos) {
@@ -36,6 +36,6 @@ LightDot::setColor(int index, glm::vec3 c) {
 }
 
 LightDot::uploadChange() {
-    this->mesh->update_vertex_buffer(vertices, buffer_size);
+    this->mesh.update_vertex_buffer(vertices, buffer_size);
 }
 */

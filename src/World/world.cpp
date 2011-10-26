@@ -155,6 +155,7 @@ Model* World::addObject(short type, const char* name) {
 
 Material* World::loadMaterial(const struct aiMaterial *mtl)
 {
+#if 0
     Material* mat = new Material();
     
     GLenum fill_mode;
@@ -208,11 +209,13 @@ Material* World::loadMaterial(const struct aiMaterial *mtl)
         mat->two_sided = true;
     
     return mat;
+#endif
 }
 
 
 Model* World::loadMeshFile(const std::string & filename)
 {
+#if 0
     vertex* vertices;
     GLushort* indices;
     GLuint scene_list = 0;
@@ -242,41 +245,41 @@ Model* World::loadMeshFile(const std::string & filename)
 
         int v_counter = 0;
 		mesh = scene->mMeshes[0];
-        vertices = new qbz::vertex[mesh->mNumVertices];
-		indices = new GLushort[mesh->mNumFaces * 3];
+        vertices = new qbz::vertex[mesh.mNumVertices];
+        indices = new GLushort[mesh.mNumFaces * 3];
         
 
-        //vertices = VBO::allocateVertices(mesh->mNumVertices);
+        //vertices = VBO::allocateVertices(mesh.mNumVertices);
 
 
         /* set vertex data */
         
-        for (unsigned int index=0; index < mesh->mNumVertices; index++) {
+        for (unsigned int index=0; index < mesh.mNumVertices; index++) {
             
-            if (mesh->HasPositions()) {
-                vertices[index].position.x = mesh->mVertices[index].x;
-                vertices[index].position.y = mesh->mVertices[index].y;
-                vertices[index].position.z = mesh->mVertices[index].z;
+            if (mesh.HasPositions()) {
+                vertices[index].position.x = mesh.mVertices[index].x;
+                vertices[index].position.y = mesh.mVertices[index].y;
+                vertices[index].position.z = mesh.mVertices[index].z;
             }
             
-            if (mesh->HasNormals()) {
-                vertices[index].normal.x = mesh->mNormals[index].x;
-                vertices[index].normal.y = mesh->mNormals[index].y;
-                vertices[index].normal.z = mesh->mNormals[index].z;
+            if (mesh.HasNormals()) {
+                vertices[index].normal.x = mesh.mNormals[index].x;
+                vertices[index].normal.y = mesh.mNormals[index].y;
+                vertices[index].normal.z = mesh.mNormals[index].z;
             }
             
-            if (mesh->HasTextureCoords(0)) {
-                vertices[index].texcoord.x = mesh->mTextureCoords[0][index].x;
-                vertices[index].texcoord.y = mesh->mTextureCoords[0][index].y;
+            if (mesh.HasTextureCoords(0)) {
+                vertices[index].texcoord.x = mesh.mTextureCoords[0][index].x;
+                vertices[index].texcoord.y = mesh.mTextureCoords[0][index].y;
             }
             
-            if (mesh->HasTangentsAndBitangents()) {
-                vertices[index].tangent.x = mesh->mTangents[index].x;
-                vertices[index].tangent.y = mesh->mTangents[index].y;
-                vertices[index].tangent.z = mesh->mTangents[index].z;
-                vertices[index].bitangent.x = mesh->mBitangents[index].x;
-                vertices[index].bitangent.y = mesh->mBitangents[index].y;
-                vertices[index].bitangent.z = mesh->mBitangents[index].z;
+            if (mesh.HasTangentsAndBitangents()) {
+                vertices[index].tangent.x = mesh.mTangents[index].x;
+                vertices[index].tangent.y = mesh.mTangents[index].y;
+                vertices[index].tangent.z = mesh.mTangents[index].z;
+                vertices[index].bitangent.x = mesh.mBitangents[index].x;
+                vertices[index].bitangent.y = mesh.mBitangents[index].y;
+                vertices[index].bitangent.z = mesh.mBitangents[index].z;
             }            
         }
 		
@@ -284,9 +287,9 @@ Model* World::loadMeshFile(const std::string & filename)
         
         int index;
         
-		for (unsigned int f=0; f < mesh->mNumFaces; f++) {			
+                for (unsigned int f=0; f < mesh.mNumFaces; f++) {
             
-            const struct aiFace* face = &mesh->mFaces[f];
+            const struct aiFace* face = &mesh.mFaces[f];
 			
 			switch (face->mNumIndices) {
 				case 1:
@@ -314,9 +317,9 @@ Model* World::loadMeshFile(const std::string & filename)
 		}
         
         qbz::Model* model = new qbz::Model(filename, face_mode);
-		model->mesh->set_vertex_buffer(vertices, sizeof(qbz::vertex) * mesh->mNumVertices);
-		model->mesh->set_element_buffer(indices, v_counter* sizeof(GLshort));
-        model->material = World::loadMaterial(scene->mMaterials[mesh->mMaterialIndex]);
+        model->mesh.set_vertex_buffer(vertices, sizeof(qbz::vertex) * mesh.mNumVertices);
+        model->mesh.set_element_buffer(indices, v_counter* sizeof(GLshort));
+        model->material = World::loadMaterial(scene->mMaterials[mesh.mMaterialIndex]);
 
 		aiReleaseImport(scene);
 		return model;
@@ -326,4 +329,6 @@ Model* World::loadMeshFile(const std::string & filename)
     }
 	
 	return NULL;
+#endif
 }
+

@@ -19,28 +19,28 @@ void ProjectionArea::moveTR(float x, float y) {
 	vertices[TR].position.x = x;
 	vertices[TR].position.y = y;
 	this->keystone();
-	this->mesh->update_vertex_buffer(vertices, buffer_size);
+        this->mesh.update_vertex_buffer(vertices, buffer_size);
 }
 
 void ProjectionArea::moveTL(float x, float y) {
 	vertices[TL].position.x = x;
 	vertices[TL].position.y = y;
 	this->keystone();
-	this->mesh->update_vertex_buffer(vertices, buffer_size);
+        this->mesh.update_vertex_buffer(vertices, buffer_size);
 }
 
 void ProjectionArea::moveBR(float x, float y) {
 	vertices[BR].position.x = x;
 	vertices[BR].position.y = y;
 	this->keystone();
-	this->mesh->update_vertex_buffer(vertices, buffer_size);
+        this->mesh.update_vertex_buffer(vertices, buffer_size);
 }
 
 void ProjectionArea::moveBL(float x, float y) {
 	vertices[BL].position.x = x;
 	vertices[BL].position.y = y;
 	this->keystone();
-	this->mesh->update_vertex_buffer(vertices, buffer_size);
+        this->mesh.update_vertex_buffer(vertices, buffer_size);
 }
 
 /* resize to actual pixel size hooked at TL corner */
@@ -62,7 +62,7 @@ void ProjectionArea::set_pixels(int x, int y) {
 	vertices[BR].position.y = vertices[TL].position.y - height;
 	
 	this->keystone();
-	this->mesh->update_vertex_buffer(vertices, buffer_size);
+        this->mesh.update_vertex_buffer(vertices, buffer_size);
 }
 
 void ProjectionArea::move_to(float x_pos, float y_pos) {
@@ -82,7 +82,7 @@ void ProjectionArea::move_to(float x_pos, float y_pos) {
 	vertices[TL].position.y += height;
 	
 	this->keystone();
-	this->mesh->update_vertex_buffer(vertices, buffer_size);
+        this->mesh.update_vertex_buffer(vertices, buffer_size);
 }
 
 
@@ -145,8 +145,8 @@ ProjectionArea::ProjectionArea(int tx, int ty, float bl_x, float bl_y, float tr_
 	float x_step = 1.0f / x_res;
 	float y_step = 1.0f / y_res;
 	
-	this->mesh->vertex_count = points_x * points_y;
-	buffer_size = (this->mesh->vertex_count) * sizeof(vertex);
+        this->mesh.vertex_count = points_x * points_y;
+        buffer_size = (this->mesh.vertex_count) * sizeof(vertex);
 	vertices = (vertex*)malloc(buffer_size);
 	if (!vertices) {
 		std::cout << "cant allocate vertex buffer\n";
@@ -157,7 +157,7 @@ ProjectionArea::ProjectionArea(int tx, int ty, float bl_x, float bl_y, float tr_
 	int i=0;
 	BL = 0;
 	BR = x_res;
-	TR = this->mesh->vertex_count-1;
+        TR = this->mesh.vertex_count-1;
 	TL = TR - x_res; 
 	
 	for (int row=0; row < points_y; row++) {
@@ -183,9 +183,9 @@ ProjectionArea::ProjectionArea(int tx, int ty, float bl_x, float bl_y, float tr_
 		}
 	}
 	
-	switch (this->mesh->primitive_type) {
+        switch (this->mesh.primitive_type) {
 		case GL_POINTS:
-			element_count = (GLuint)this->mesh->vertex_count;
+                        element_count = (GLuint)this->mesh.vertex_count;
 			indices = (GLushort*) malloc(sizeof(GLushort) * element_count);
 			for (GLuint ei=0; ei < element_count; ei++) {
 				this->indices[ei] = ei;
@@ -213,8 +213,8 @@ ProjectionArea::ProjectionArea(int tx, int ty, float bl_x, float bl_y, float tr_
 			break;
 	}
 	
-	this->mesh->set_vertex_buffer(vertices, buffer_size);
-	this->mesh->set_element_buffer(indices, sizeof(GLushort) * (element_count));
+        this->mesh.set_vertex_buffer(vertices, buffer_size);
+        this->mesh.set_element_buffer(indices, sizeof(GLushort) * (element_count));
 	
 	this->set_pixels(tx,ty);
 };

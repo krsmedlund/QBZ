@@ -21,6 +21,20 @@ Rectangle {
         width: parent.width
     }
 
+    MusicChannel {
+        anchors.verticalCenter: parent.bottom
+        anchors.verticalCenterOffset: -10
+        width: parent.width
+    }
+
+    TimeChannel {
+        anchors.verticalCenter: parent.bottom
+        anchors.verticalCenterOffset: -30
+        width: parent.width
+
+    }
+
+
     NodeListWindow {
         height: parent.height
         id: nodeListWindow
@@ -33,10 +47,5 @@ Rectangle {
 
     InputListWindow {
         id: inputListWindow
-    }
-
-    Dial {
-        x: 200
-        y: 200
     }
 }

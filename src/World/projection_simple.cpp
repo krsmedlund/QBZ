@@ -5,7 +5,7 @@ using namespace qbz;
 Projection_Simple::Projection_Simple(bool flip, float scale) : Model(GL_QUADS) {
 	
 	buffer_size = sizeof(vertex) * 4;
-	this->mesh->vertex_count = 4;
+        this->mesh.vertex_count = 4;
 
 	vertices[0].position.x = scale * -1.0f; 
 	vertices[0].position.y = scale * -1.0f; 
@@ -51,6 +51,6 @@ Projection_Simple::Projection_Simple(bool flip, float scale) : Model(GL_QUADS) {
 	indices[2] = 1;
 	indices[3] = 0;
 	
-	this->mesh->set_vertex_buffer(vertices, buffer_size);
-	this->mesh->set_element_buffer(indices, sizeof(indices));
+        this->mesh.set_vertex_buffer(vertices, buffer_size);
+        this->mesh.set_element_buffer(indices, sizeof(indices));
 }

@@ -31,7 +31,9 @@ Item {
                 ctx.stroke()
                 ctx.closePath()
             }
-            ctx.strokeStyle = "green"
+
+            ctx.lineWidth = 5.0
+            ctx.strokeStyle = "white"
 
             CableCode.globalCables.forEach(
                 function(cable) {

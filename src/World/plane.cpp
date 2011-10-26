@@ -66,8 +66,8 @@ Plane::Plane(int res) : Model(GL_TRIANGLES) {
 	float x_step = 1.0f / x_res;
 	float y_step = 1.0f / y_res;
 	
-	this->mesh->vertex_count = points_x * points_y;
-	int buffer_size = (this->mesh->vertex_count) * sizeof(vertex);
+        this->mesh.vertex_count = points_x * points_y;
+        int buffer_size = (this->mesh.vertex_count) * sizeof(vertex);
 	vertices = (vertex*)malloc(buffer_size);
 	if (!vertices) {
 		std::cout << "cant allocate vertex buffer\n";
@@ -101,9 +101,9 @@ Plane::Plane(int res) : Model(GL_TRIANGLES) {
 	}
 	
     GLushort v = 0;
-    switch (this->mesh->primitive_type) {
+    switch (this->mesh.primitive_type) {
 		case GL_POINTS:
-			element_count = (GLuint)this->mesh->vertex_count;
+                        element_count = (GLuint)this->mesh.vertex_count;
 			indices = (GLushort*) malloc(sizeof(GLushort) * element_count);
 			for (GLuint ei=0; ei < element_count; ei++) {
 				this->indices[ei] = ei;
@@ -155,8 +155,8 @@ Plane::Plane(int res) : Model(GL_TRIANGLES) {
 			break;
 	}
 	
-	this->mesh->set_vertex_buffer(vertices, buffer_size);
-	this->mesh->set_element_buffer(indices, sizeof(GLushort) * (element_count));
+        this->mesh.set_vertex_buffer(vertices, buffer_size);
+        this->mesh.set_element_buffer(indices, sizeof(GLushort) * (element_count));
 	
 }
 

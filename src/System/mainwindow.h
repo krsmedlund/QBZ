@@ -30,6 +30,7 @@ private:
     qbz::Composer* scene;
 
 protected slots:
+    QString getResourceList(const QString & nodeName);
     void fromQML(const QString & id, const QString & message);
     QString getNodeCfg(const QString & name);
     QString addComponent(const QString & type, const QString & identifier);

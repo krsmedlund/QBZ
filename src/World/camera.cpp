@@ -67,15 +67,14 @@ void Camera::setLookAt(const glm::vec3 & lookAt)
 
 void Camera::getViewMatrix()
 {
-    glm::vec3 f(glm::normalize(_lookAt - _position)), 
-                s(glm::normalize(glm::cross(f, glm::normalize(_up)))),          
-                u(glm::normalize(glm::cross(s, f)));
-    
-    glm::mat4 m( s[0],  s[1],  s[2], 0,             
-                u[0],  u[1],  u[2], 0,            
-                -f[0], -f[1], -f[2], 0,                
-                0,     0,     0, 1);
-    this->glViewMatrix = glm::translate(glm::inverse(m), -_position);    
+    glm::vec3 f(glm::normalize(_lookAt - _position));
+    glm::vec3 s(glm::normalize(glm::cross(f, glm::normalize(_up))));
+    glm::vec3 u(glm::normalize(glm::cross(s, f)));
+    glm::mat4 m( s[0],  s[1],  s[2],    0,
+                 u[0],  u[1],  u[2],    0,
+                -f[0], -f[1], -f[2],    0,
+                    0,     0,     0,    1);
+    this->glViewMatrix = glm::translate(glm::inverse(m), -_position);
 }
 
 

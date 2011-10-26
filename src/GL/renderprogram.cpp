@@ -68,15 +68,15 @@ RenderProgram::RenderProgram(const std::string & name, bool is_pp)
 
     inPorts["ModelData"] = network::registerInPort(name, "ModelData", 1, true);
     outPorts["RenderProgram"] = network::registerOutPort(name, "RenderProgram", this);
-
-    network::printPorts();
 }
 
 
 void RenderProgram::Do()
 {
-    Model *m = reinterpret_cast<Model*>(inPorts["ModelData"]->getValuePtr());
-    drawObject(m);
+    if (inPorts["ModelData"]->connectedTo != 0) {
+        qbz::Model* m = reinterpret_cast<qbz::Model*>(inPorts["ModelData"]->getValuePtr());
+        drawObject(m);
+    }
 }
 
 void RenderProgram::drawObject(Model* model, Camera* cam)
@@ -114,7 +114,7 @@ void RenderProgram::drawObject(Model* model, Camera* cam)
 
     model->rotationMatrixInverse = glm::inverse(model->rotate_matrix);
     model->model_matrix = model->translate_matrix * model->rotate_matrix * model->scale_matrix;
-    Mesh* mesh = model->mesh;
+    Mesh* mesh = & (model->mesh);
 
     this->begin();
 
@@ -133,22 +133,22 @@ void RenderProgram::drawObject(Model* model, Camera* cam)
 
     if (this->settings["textures[0]"]) {
         glActiveTexture(GL_TEXTURE0);
-		glBindTexture(GL_TEXTURE_2D, model->material->texture[0]);
+                glBindTexture(GL_TEXTURE_2D, model->material.texture[0]);
 		this->program->setUniformValue(this->locations["textures[0]"], 0);
 	}    
     if (this->settings["textures[1]"]) {
         glActiveTexture(GL_TEXTURE1);
-		glBindTexture(GL_TEXTURE_2D, model->material->texture[1]);
+                glBindTexture(GL_TEXTURE_2D, model->material.texture[1]);
 		this->program->setUniformValue(this->locations["textures[1]"], 1);
 	}
     if (this->settings["textures[2]"]) {
         glActiveTexture(GL_TEXTURE2);
-		glBindTexture(GL_TEXTURE_2D, model->material->texture[2]);
+                glBindTexture(GL_TEXTURE_2D, model->material.texture[2]);
         this->program->setUniformValue(this->locations["textures[2]"], 2);
 	}
     if (this->settings["textures[3]"]) {
 		glActiveTexture(GL_TEXTURE3_ARB);
-		glBindTexture(GL_TEXTURE_2D, model->material->texture[3]);
+                glBindTexture(GL_TEXTURE_2D, model->material.texture[3]);
         this->program->setUniformValue(this->locations["textures[3]"], 3);
 	}
 

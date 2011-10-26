@@ -46,13 +46,13 @@ namespace qbz {
 
     public:
         std::string nodeName;
-        network::InPort *inPortTexture, *inPortPosition, *inPortScale, *inPortRotation;
-        network::OutPort *outPortModelData;
 
         Model(GLenum mesh_primitive=GL_TRIANGLES);
         Model(const std::string & _nodeName, GLenum mesh_primitive=GL_TRIANGLES);
-        Mesh * mesh;
-        Material * material;
+
+        Mesh mesh;
+        Material material;
+
         glm::mat4 model_matrix;
         glm::mat4 rotate_matrix;
         glm::mat4 translate_matrix;
@@ -60,9 +60,9 @@ namespace qbz {
         glm::mat4 rotationMatrixInverse;
         glm::mat4 transformMatrixInverse;
 
-        void set_primitive(GLenum);
+        void setPrimitive(GLenum);
 
-        void set_mesh(Mesh*);
+        void setMesh(Mesh & _mesh);
 
         void translate(float x, float y, float z);
         void setPosition(float x, float y, float z);

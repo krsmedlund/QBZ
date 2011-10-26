@@ -26,18 +26,14 @@ static int foo = qbz::network::Factory::registerCreateFunction("Model", ModelFac
 
 Model::Model(GLenum mesh_primitive)
 {
-    this->mesh = new Mesh(mesh_primitive);
-    this->material = new Material();
+    setPrimitive(mesh_primitive);
 }
 
 Model::Model(const std::string & _nodeName, GLenum mesh_primitive) : nodeName(_nodeName)
 {
-    this->mesh = new Mesh(mesh_primitive);
-    this->material = new Material();
     network::registerNode(this, nodeName);
-    inPortTexture = network::registerInPort(nodeName, "Texture");
-    outPortModelData = network::registerOutPort(nodeName, "ModelData", this, 1);
-    std::cout << _nodeName << " : " << outPortModelData->getValuePtr() << std::endl;
+    inPorts["Texture"] = network::registerInPort(nodeName, "Texture");
+    outPorts["ModelData"] = network::registerOutPort(nodeName, "ModelData", this, 1);
 }
 
 
@@ -72,10 +68,10 @@ void Model::rotate(float angle, float x, float y, float z) {
 	this->rotate_matrix = glm::rotate(this->rotate_matrix, angle, glm::vec3(x, y, z));
 }
 
-void Model::set_primitive(GLenum mode) {
-    this->mesh->primitive_type = mode;
+void Model::setPrimitive(GLenum mode) {
+    this->mesh.primitive_type = mode;
 }
 
-void Model::set_mesh(Mesh* mesh) {
-	this->mesh = mesh;
+void Model::setMesh(Mesh & _mesh) {
+        this->mesh = mesh;
 } 

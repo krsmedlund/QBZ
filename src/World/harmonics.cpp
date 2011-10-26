@@ -94,13 +94,13 @@ void Harmonics::update(int p1, int p2,int p3,int p4, float f1, float f2, float f
             i += 4;
          }
       }
-      this->mesh->update_vertex_buffer(vertices, buffer_size);
+      this->mesh.update_vertex_buffer(vertices, buffer_size);
 }
 
 Harmonics::Harmonics() : Model(GL_QUADS) {
 
-    mesh->vertex_count = (HARMONICS_SIZE) * (HARMONICS_SIZE) * 4;
-    buffer_size = sizeof(vertex) * this->mesh->vertex_count;
+    mesh.vertex_count = (HARMONICS_SIZE) * (HARMONICS_SIZE) * 4;
+    buffer_size = sizeof(vertex) * this->mesh.vertex_count;
 
     vertices = (vertex*)malloc(buffer_size);
     if (!vertices) {
@@ -109,7 +109,7 @@ Harmonics::Harmonics() : Model(GL_QUADS) {
 
     memset(vertices, buffer_size, 0);
 
-    element_count = (GLuint)this->mesh->vertex_count;
+    element_count = (GLuint)this->mesh.vertex_count;
     indices = (GLushort*) malloc(sizeof(GLushort) * element_count);
 
     double du = (M_PI * 2.0f) / (double)HARMONICS_SIZE; /* Theta */
@@ -207,8 +207,8 @@ Harmonics::Harmonics() : Model(GL_QUADS) {
          }
       }
 
-    this->mesh->set_vertex_buffer(vertices, buffer_size);
-    this->mesh->set_element_buffer(indices, sizeof(GLushort) * element_count);
+    this->mesh.set_vertex_buffer(vertices, buffer_size);
+    this->mesh.set_element_buffer(indices, sizeof(GLushort) * element_count);
 }
 
 glm::vec3 Harmonics::eval(double theta, double phi) {

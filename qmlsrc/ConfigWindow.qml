@@ -10,30 +10,34 @@ Item {
     height: 500
     visible: false
 
+    property string title
     property string nodeName
-
-    function clear() {
-        Cfg.cfg.clear()
-    }
 
     function addOpt(name) {
         Cfg.cfg.addOpt(name)
     }
 
-    function show() {
-        visible = !visible
-        Cfg.cfg.show()
-    }
 
     Rectangle {
         anchors.fill: parent
         gradient: Gradient {
-                 GradientStop { position: 0.0; color: "#999" }
-                 GradientStop { position: 1.0; color: "#555" }
+                 GradientStop { position: 0.0; color: "#909595" }
+                 GradientStop { position: 1.0; color: "#707575" }
              }
 
+        Text {
+            y:5
+            anchors.horizontalCenter: parent.horizontalCenter
+            color: "#EEE"
+            font.pointSize: 18
+            text: confWindow.title
+            style: Text.Raised;
+            styleColor: "#222"
+
+        }
+
         Rectangle {
-            x:25; y:15
+            x:25; y:30
             id: nameInput
             width: 300
             height: 55
@@ -66,7 +70,6 @@ Item {
             text: "Add"
             onClicked: {
                Cfg.cfg.options[0]["name"] = textInput.text
-               parent.visible = !parent.visible
                confWindow.cfgDone(Cfg.cfg.options)
             }
 

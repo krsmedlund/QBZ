@@ -92,33 +92,61 @@ QString MainWindow::getNodeCfg(const QString & name)
     return QString("asdasd");
 }
 
+#include "System/library.h"
+
+QString MainWindow::getResourceList(const QString & nodeName)
+{
+    // get type
+    Library& l = Library::open();
+    ResourceType type;
+    QStringList list;
+
+    if (nodeName == "RenderProgram") type = QBZ_RESOURCE_RENDERPROGRAM;
+    else if (nodeName == "ModelFile") type = QBZ_RESOURCE_MODELFILE;
+    else if (nodeName == "Texture") type = QBZ_RESOURCE_TEXTURE;
+    else {
+        std::cout << "no such type loaded in Library: " << nodeName.toStdString() << std::endl;
+        return QString("");
+    }
+
+    std::vector<std::string> a(l.getResourceListByType(type));
+    std::vector<std::string>::iterator i;
+    for(i=a.begin(); i!=a.end(); ++i)
+        list.append(i->c_str());
+    return list.join(":");
+}
+
+
 QString MainWindow::bindComponents(const QString & type, const QString & fromPort, const QString & toPort)
 {
     QString in, out;
     if (fromPort.startsWith("OUT")) {
         QStringList portParts = fromPort.split(".");
-        out = portParts[1] + "." + portParts[2];
+        portParts.removeFirst();
+        out = portParts.join(".");
     } else out = fromPort;
 
     if (toPort.startsWith("IN")) {
-        QStringList portParts = toPort.split(".");
-        in = portParts[1] + "." + portParts[2];
+        QStringList portParts(toPort.split("."));
+        portParts.removeFirst();
+        in = portParts.join(".");
     } else in = toPort;
 
     qDebug() << "(s): Binding " << out << " to " << in << " of type " << type;
-    network::connectPorts(fromPort.toStdString(), toPort.toStdString());
+    network::connectPorts(out.toStdString(), in.toStdString());
     return QString("boob");
 }
 
 
 QString MainWindow::addComponent(const QString & type, const QString & identifier)
 {
-    NetworkNode* node = Factory::createNode(type.toStdString(), identifier.toStdString());
-
-    QDeclarativeView *view = qFindChild<QDeclarativeView*>(this, "qmlEmbedHook");
-    QDeclarativeItem *item = view->rootObject()->findChild<QDeclarativeItem*>(identifier);
-    if (item) item->setProperty("name", "Hi from C++");
-    else qDebug() << "cant find " << identifier;
+    qDebug() << "type " << type << " :: identifier " << identifier;
+    std::string nodeName(type.toStdString());
+    std::string resourceName(identifier.toStdString());
+    network::registerNode(
+                Factory::createNode(nodeName, resourceName),
+                resourceName
+                );
     return QString("foo");
 }
 

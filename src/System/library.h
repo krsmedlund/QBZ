@@ -42,6 +42,7 @@ namespace qbz {
 
         ResourceType getResourceType(const std::string & name);
         std::map<std::string, ResourceType> * getResourceList();
+        std::vector<std::string> getResourceListByType(ResourceType type);
 
     private:
         void recursiveFind(ResourceType type, QDir & path, int recLevel=0);

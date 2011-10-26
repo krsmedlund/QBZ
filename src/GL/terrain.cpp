@@ -6,8 +6,8 @@ using namespace qbz;
 
 Terrain::Terrain(float bl_x, float bl_y, float tr_x, float tr_y) : Model("Terrain", GL_QUADS) {
 
-    this->mesh->vertex_count = TERRAIN_SIZE * TERRAIN_SIZE;
-    buffer_size = sizeof(vertex) * this->mesh->vertex_count;
+    this->mesh.vertex_count = TERRAIN_SIZE * TERRAIN_SIZE;
+    buffer_size = sizeof(vertex) * this->mesh.vertex_count;
     quad_count = (TERRAIN_SIZE-1) * (TERRAIN_SIZE-1);
 
     vertices = (vertex*)malloc(buffer_size);
@@ -45,9 +45,9 @@ Terrain::Terrain(float bl_x, float bl_y, float tr_x, float tr_y) : Model("Terrai
         }
     }
 
-    switch (this->mesh->primitive_type) {
+    switch (this->mesh.primitive_type) {
         case GL_POINTS:
-            element_count = (GLuint)this->mesh->vertex_count;
+            element_count = (GLuint)this->mesh.vertex_count;
             indices = (GLushort*) malloc(sizeof(GLushort) * element_count);
             for (GLuint ei=0; ei < element_count; ei++) {
                 this->indices[ei] = ei;
@@ -74,8 +74,8 @@ Terrain::Terrain(float bl_x, float bl_y, float tr_x, float tr_y) : Model("Terrai
             break;
     }
 
-    this->mesh->set_vertex_buffer(vertices, buffer_size);
-    this->mesh->set_element_buffer(indices, sizeof(GLushort) * element_count);
+    this->mesh.set_vertex_buffer(vertices, buffer_size);
+    this->mesh.set_element_buffer(indices, sizeof(GLushort) * element_count);
 }
 
 glm::vec3 calcNormal(glm::vec3 p1, glm::vec3 p2,glm::vec3 p3) {
@@ -337,17 +337,17 @@ void Terrain::populateFromHeightMap(const std::string &filename) {
     int bytes = b.byteCount();
     const QRgb* pixel = reinterpret_cast<const QRgb*>(pixelData);
 
-    for (int i=0; bytes > 0 && i<this->mesh->vertex_count; ++i) {
+    for (int i=0; bytes > 0 && i<this->mesh.vertex_count; ++i) {
         bytes -= sizeof(QRgb);
         vertices[i].position.y = 0.5f + qRed(*pixel) / 255.0f;
         pixel++;
     }
 
-    for (int i=0; i<this->mesh->vertex_count; ++i) {
+    for (int i=0; i<this->mesh.vertex_count; ++i) {
         this->getSurroundingVertices(i);
     }
 
-    this->mesh->update_vertex_buffer(vertices, this->mesh->vertex_count*sizeof(vertex));
+    this->mesh.update_vertex_buffer(vertices, this->mesh.vertex_count*sizeof(vertex));
 
 }
 
@@ -356,14 +356,14 @@ void Terrain::populateFromNoise(int seed) {
 
     srand(seed);
 
-    for (int i=0; i<this->mesh->vertex_count; ++i) {
+    for (int i=0; i<this->mesh.vertex_count; ++i) {
         vertices[i].position.y += cos(vertices[i].position.x) + sin(vertices[i].position.z/2.0); // rand() / (float)RAND_MAX / 2.0f;
 
     }
 
-    for (int i=0; i<this->mesh->vertex_count; ++i) {
+    for (int i=0; i<this->mesh.vertex_count; ++i) {
         this->getSurroundingVertices(i);
     }
 
-    this->mesh->update_vertex_buffer(vertices, this->mesh->vertex_count*sizeof(vertex));
+    this->mesh.update_vertex_buffer(vertices, this->mesh.vertex_count*sizeof(vertex));
 }

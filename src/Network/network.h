@@ -108,11 +108,12 @@ namespace network {
 
         void * getValuePtr(unsigned int channel=0)
         {
-            if (!connectedTo) {
-                return defaultData.at(0);
-            }
+            if (!connectedTo)
+                return (void*)0;
+
             if (channel < connectedTo->data.size())
                 return connectedTo->data.at(channel);
+
             else std::cout << "wrong channel" << std::endl;
             return 0;
         }
@@ -148,14 +149,13 @@ namespace network {
     class Network
     {
     public:
-        static Network & open()
+        static Network* open()
         {
             static Network instance;
-            return instance;
+            return &instance;
         }
 
         void setPortValue(const std::string & portIdentifier, float value);
-
         void registerNode(NetworkNode* node, const std::string & name);
 
         void connectPorts(const std::string & outport, const std::string & inport);
@@ -166,9 +166,14 @@ namespace network {
         OutPort* registerOutPort(const std::string & nodeName, const std::string & portName, void * valuePtr=0, unsigned int channels=1);
         InPort* registerInPort(const std::string & nodeName, const std::string & portName, unsigned int channelCount=1, bool isList=false);
 
+        // these are the ones we run, they will call all other components, we need to keep this list in order we want to render.
+        std::vector< std::pair<std::string, NetworkNode*> > renderTargets;
         std::map<std::string, NetworkNode*> components;
         std::map<std::string, InPort*> inPorts;
         std::map<std::string, OutPort*> outPorts;
+        qbz::network::NetworkNode* finalOut;
+
+        bool hasFinal;
 
     private:
         Network();
@@ -177,6 +182,9 @@ namespace network {
     OutPort* registerOutPort(const std::string & nodeName, const std::string & portName, void * valuePtr=0, unsigned int channels=1);
     InPort* registerInPort(const std::string & nodeName, const std::string & portName, unsigned int channelCount=1, bool isList=false);
     void registerNode(NetworkNode* node, const std::string & name);
+
+    const std::vector< std::pair<std::string, network::NetworkNode*> >& getRenderTargetListHandle();
+    qbz::network::NetworkNode* getFinalOut();
 
     void connectPorts(const std::string & outport, const std::string & inport);
     void connectPorts(OutPort* outport, InPort* inport);

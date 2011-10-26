@@ -33,8 +33,6 @@ namespace render
         ~RenderTarget();
 
         NetworkNodeConfig & getConfig();
-        void Setup(NetworkNodeConfig & cfg);
-
         void Do();
 
         void onConnectedPort() {}

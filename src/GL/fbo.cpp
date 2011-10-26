@@ -64,7 +64,7 @@ void FBO::end() {
         this->fbo_2->bind();
 		glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
         this->post_processors.at(i)->begin();
-        this->rect->material->setTexture(0, fbo->texture());
+        this->rect->material.setTexture(0, fbo->texture());
         this->post_processors.at(i)->drawObject(this->rect, this->cam);        
         this->post_processors.at(i)->end();
 		this->fbo_2->release();

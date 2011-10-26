@@ -3,6 +3,9 @@ import "Components.js" as Network
 import "ConfigWindow.js" as Cfg
 
 Item {
+    property string nodeName
+    property string fileName
+
     id: nodeList
     width: 97
     height: 750
@@ -11,26 +14,74 @@ Item {
         onClicked: grid.currentIndex = -1
     }
 
-    function showConfigWindow(nodeName) {
-        cfgWin.nodeName = nodeName
-        cfgWin.clear()
+    function reset() {
+        cfgWin.visible = false
+        resWin.visible = false
+        nodeList.nodeName = ""
+        nodeList.fileName = ""
+    }
+
+    function showConfigWindow() {
         cfgWin.addOpt("foo", "use foo", "bool")
-        cfgWin.show()
         cfgWin.visible = true
     }
 
-    ConfigWindow {
-        height: parent.height - 40
-        x:100
-        id: cfgWin
-        onCfgDone: {
-            var obj = Network.componentContainer.addNode(cfgWin.nodeName)
-            mainWindow.addComponent(cfgWin.nodeName, opts[0]["name"])
-            obj.name = opts[0]["name"]
+    function showResourceWindow(nodeName)
+    {
+        nodeList.nodeName = nodeName
+        resWin.nodeName = nodeName
+
+        resWin.visible = true
+        resWin.clear()
+        var _resList = mainWindow.getResourceList(nodeName)
+        var resList = _resList.split(":")
+        for (var i=0; i<resList.length; i++) {
+            resWin.addResource(resList[i])
         }
-        onCfgCancel: cfgWin.visible = false
     }
 
+    ResourceWindow {
+        visible: false
+        height: parent.height - 40
+        x:100
+        id:resWin
+        onResourceSelectDone: {
+            nodeList.fileName = name
+            nodeList.showConfigWindow()
+        }
+        onResourceSelectCancel: nodeList.reset()
+    }
+
+
+    ConfigWindow {
+        height: parent.height - 40
+        x:250
+        id: cfgWin
+        onCfgDone: {
+            var obj = Network.componentContainer.addNode(nodeList.nodeName)
+            obj.nodeName = nodeList.nodeName
+            obj.name = opts[0]["name"]
+
+
+            obj.fileName = (nodeList.fileName == "") ? obj.name = opts[0]["name"] : nodeList.fileName;
+
+            console.log("name")
+            console.log(obj.name)
+
+            console.log("filename")
+            console.log(obj.fileName)
+
+            console.log("nodename")
+            console.log(obj.nodeName)
+
+            mainWindow.addComponent(obj.nodeName, obj.fileName)
+
+            nodeList.reset();
+        }
+        onCfgCancel: nodeList.reset()
+    }
+
+    ResourceWindow {}
 
     GridView {
         id: grid
@@ -41,6 +92,8 @@ Item {
         focus: true
         flickableChildren: MouseArea {
              anchors.fill: parent
+
+
              onClicked: grid.currentIndex = -1
         }
         Component.onCompleted: currentIndex = -1
@@ -85,7 +138,8 @@ Item {
                 anchors.fill: parent
                 onClicked: {
                     grid.currentIndex = index
-                    nodeList.showConfigWindow(modelData)
+                    //nodeList.showConfigWindow(modelData)
+                    nodeList.showResourceWindow(modelData)
                 }
             }
 

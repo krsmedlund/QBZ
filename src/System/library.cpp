@@ -41,9 +41,24 @@ Texture::Texture(const std::string & name)
 Library::Library()
 {
     /* load resource list */
-
-    QDir imageDir("./");
+    QDir imageDir("./data/textures/");
+    QDir shaderDir("./data/shaders/");
+    QDir modelDir("./data/models/");
     recursiveFind(QBZ_RESOURCE_TEXTURE, imageDir);
+    recursiveFind(QBZ_RESOURCE_RENDERPROGRAM, shaderDir);
+    recursiveFind(QBZ_RESOURCE_MODELFILE, modelDir);
+}
+
+std::vector<std::string> Library::getResourceListByType(ResourceType type)
+{
+    std::vector<std::string> v;
+    std::map<std::string, ResourceType>::iterator i;
+    for(i=availResourceList.begin(); i!=availResourceList.end(); ++i) {
+        if(i->second == type) {
+            v.push_back(i->first);
+        }
+    }
+    return v;
 }
 
 void Library::addResource(ResourceType type, const std::string & name) {
@@ -53,7 +68,7 @@ void Library::addResource(ResourceType type, const std::string & name) {
 
 void Library::recursiveFind(ResourceType type, QDir & path, int recLevel)
 {
-    QDir d("data/textures/");
+    QDir d(path);
     d.setSorting( QDir::Name );
     d.setFilter( QDir::Files | QDir::Dirs );
 
@@ -68,7 +83,13 @@ void Library::recursiveFind(ResourceType type, QDir & path, int recLevel)
             QDir sd(finfo.filePath());
             this->recursiveFind(type, sd, recLevel++);
          } else {
-            addResource(type, finfo.fileName().toStdString());
+            QString fileName(finfo.fileName());
+            if (fileName.contains(".frag"))
+                continue;
+            if (fileName.contains(".vert")) {
+                fileName = fileName.replace(QString(".vert"), QString(""));
+            }
+            addResource(type, fileName.toStdString());
         }
     }
 }
@@ -97,9 +118,9 @@ QGLShaderProgram* Library::getShader(const std::string & name)
 
     const QGLContext* context = QGLContext::currentContext();
 
-    std::string n("data/" + name + ".vert");
+    std::string n("data/shaders/" + name + ".vert");
     QString vertFile(n.c_str());
-    std::string n2("data/" + name + ".frag");
+    std::string n2("data/shaders/" + name + ".frag");
     QString fragFile(n2.c_str());
 
     QGLShaderProgram* program = new QGLShaderProgram(context);

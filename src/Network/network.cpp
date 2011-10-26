@@ -20,13 +20,23 @@ NetworkNode::~NetworkNode()
 
 
 
-Network::Network() {
+Network::Network() : hasFinal(false) {
     std::cout << "new network" <<std::endl;
+    finalOut = 0;
 }
 
 void Network::registerNode(NetworkNode* node, const std::string & name)
 {
-    this->components[name] = node;
+    components[name] = node;
+    std::string type(node->getType());
+
+    if (type == "RenderTarget")
+        renderTargets.push_back(std::make_pair(name, node));
+    else if (type == "FinalOut") {
+        std::cout << "Added final out!" << std::endl;
+        this->finalOut = node;
+        this->hasFinal = true;
+    }
 }
 
 void Network::connectPorts(const std::string & outport, const std::string & inport)
@@ -35,14 +45,19 @@ void Network::connectPorts(const std::string & outport, const std::string & inpo
     InPort* in = 0;
 
     if (outPorts.count(outport) > 0) out = outPorts[outport];
-    if (inPorts.count(inport) > 0) in = inPorts[inport];
-
-    if (!in || !out) {
-        std::cout << "cant find port."<< std::endl;
+    else {
+        std::cout << "Cant find out port " << outport << std::endl;
         network::printPorts();
-    } else {
-        this->connectPorts(out, in);
+        return;
     }
+
+    if (inPorts.count(inport) > 0) in = inPorts[inport];
+    else {
+        std::cout << "Cant find in port " << inport << std::endl;
+        network::printPorts();
+        return;
+    }
+    this->connectPorts(out, in);
 }
 
 void Network::connectPorts(OutPort* outport, InPort* inport)
@@ -66,8 +81,10 @@ OutPort * Network::registerOutPort(const std::string & nodeName, const std::stri
 InPort * Network::registerInPort(const std::string & nodeName, const std::string & portName, unsigned int channelCount, bool isList)
 {
     InPort * port = new InPort(nodeName, portName, channelCount, isList);
-    inPorts.insert(std::make_pair(port->portIdentifier, port));
-    //std::cout << "Registered port '" << port->portIdentifier << "'" << std::endl;
+    network::printPorts();
+    if (!inPorts.count(port->portIdentifier)) {
+        inPorts[port->portIdentifier] =  port;
+    }
     return port;
 }
 
@@ -91,6 +108,10 @@ void Network::setPortValue(const std::string & portIdentifier, float value)
 
 
 extern Network* gNetwork;
+
+const std::vector<std::string> & network::getPortsForNode(const std::string & nodeName)
+{
+}
 
 void network::setPortValue(const std::string & portIdentifier, float value)
 {
@@ -147,5 +168,17 @@ void network::printConnectedPorts()
     for (oit=gNetwork->outPorts.begin(); oit != gNetwork->outPorts.end(); ++oit) {
         std::cout << "OutPort [" << oit->second->data.at(0) << "] '" << oit->first << "'" << std::endl;
     }
+}
+
+const std::vector< std::pair<std::string, network::NetworkNode*> >& network::getRenderTargetListHandle()
+{
+    return gNetwork->renderTargets;
+}
+
+NetworkNode* network::getFinalOut()
+{
+    if (gNetwork->hasFinal == true && gNetwork->finalOut != NULL)
+        return gNetwork->finalOut;
+    else return NULL;
 }
 

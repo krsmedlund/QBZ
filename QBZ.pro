@@ -50,7 +50,9 @@ HEADERS += src/qbz.h \
     src/World/projectionarea.h \
     src/World/world.h \
     src/baseapp.h \
-    src/composer.h
+    src/composer.h \
+    src/World/modelfile.h \
+    src/GL/finalout.h
 		   
 SOURCES += src/System/main.cpp \
     src/Ext/RtMidi.cpp \
@@ -80,7 +82,9 @@ SOURCES += src/System/main.cpp \
     src/World/projection_simple.cpp \
     src/World/projectionarea.cpp \
     src/World/world.cpp \
-    src/composer.cpp
+    src/composer.cpp \
+    src/World/modelfile.cpp \
+    src/GL/finalout.cpp
 
 INCLUDEPATH +=  frameworks \
         frameworks/assimp/include \
@@ -177,7 +181,21 @@ OTHER_FILES += \
     qmlsrc/ConfigWindow.js \
     qmlsrc/RenderProgram.qml \
     qmlsrc/NodeListWindow.qml \
-    qmlsrc/InputListWindow.qml
+    qmlsrc/InputListWindow.qml \
+    qmlsrc/ResourceWindow.qml \
+    qmlsrc/ModelFile.qml \
+    qmlsrc/FinalOut.qml \
+    qmlsrc/MusicChannel.qml \
+    qmlsrc/TimeChannel.qml
+
+
+
+
+
+
+
+
+
 
 
 

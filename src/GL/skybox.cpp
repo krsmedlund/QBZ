@@ -2,9 +2,11 @@
 
 using namespace qbz;
 
-SkyboxCube::SkyboxCube() : Model("Skybox", GL_QUADS) {
+SkyboxCube::SkyboxCube() : Model("Skybox", GL_QUADS)
+{
 	
-	this->mesh->vertex_count = 8;
+        mesh.vertex_count = 8;
+
         bool flip = false;
 	buffer_size = sizeof(vertex) * 8;
 
@@ -86,6 +88,6 @@ SkyboxCube::SkyboxCube() : Model("Skybox", GL_QUADS) {
 	indices[22] = 1;
 	indices[23] = 0;
     
-	this->mesh->set_vertex_buffer(vertices, buffer_size);
-        this->mesh->set_element_buffer(indices, sizeof(indices));
+        mesh.set_vertex_buffer(vertices, buffer_size);
+        mesh.set_element_buffer(indices, sizeof(indices));
 }

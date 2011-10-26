@@ -7,6 +7,8 @@ Item {
     height: 100
 
     property string name
+    property string fileName
+    property string nodeName: "RenderProgram"
 
     MouseArea {
         height: 100
@@ -27,12 +29,11 @@ Item {
 
     Renderer {
         id: renderer
-        name: parent.name
+        name: parent.fileName
         width: parent.width
         height: parent.height
         icon: "default/RenderProgram.png"
-        visible: false
-        title: "RenderProgram"
+        title: parent.nodeName
     }
 
     InPort {
@@ -41,9 +42,9 @@ Item {
         y: 10
         anchors.horizontalCenter: parent.left
         anchors.horizontalCenterOffset: width/2 + 4
-        name: "Models"
+        name: "ModelData"
         type: "model"
-        portid: "IN." + parent.name + ".Models"
+        portid: "IN." + parent.fileName + ".ModelData"
     }
 
     OutPort {
@@ -54,7 +55,7 @@ Item {
         anchors.horizontalCenterOffset: - width/2 - 5
         name: "Render program data"
         type: "renderprogram"
-        portid: "OUT." + parent.name + ".RenderProgram"
+        portid: "OUT." + parent.fileName + ".RenderProgram"
     }
 
 
